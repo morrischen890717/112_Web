@@ -1,0 +1,141 @@
+<html>
+  <head>
+    <title>GPU Server Status</title>
+  </head>
+<style>
+    html {
+        background-color: #1b1b1b;
+        color: #cdcdcd
+    }
+    h4 {
+        padding: 10px
+    }
+    a {
+        color: #cdcdcd
+    }
+    a:hover {
+        color:aqua
+    }
+    li {
+        padding: 0 5% 5%
+    }
+    body {
+        height: 90%;
+        margin: 0
+    }
+    table {
+        margin: 0 5% 5%;
+        border-collapse: collapse;
+        border: 2px solid rgb(140 140 140);
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        background-color: #343434;
+    }
+    caption {
+        padding: 10px;
+        font-weight: bold;
+    }
+    th,
+    td {
+        border: 1px solid rgb(160 160 160);
+        padding: 8px 10px;
+        text-align: center;
+    }
+    .top-navigation {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 5%
+    }
+    .logo {
+        flex-grow: 1;
+    }
+    .article-actions-container {
+        display: flex;
+        background-color: #313131;
+        height: 5%;
+        margin-bottom: 3%;
+        align-items: center;
+        padding: 10px 5%
+    }
+    .main-wrapper {
+        display: grid;
+        grid-template-columns: 300px auto 200px;
+        height: 80%;
+    }
+    .sidebar-container{
+        padding: 0 0 0 10%
+    }
+
+</style>
+    <body>
+        <div class="top-navigation">
+            <h2 class=logo>Lab 402 Server</a></h2>
+            <a href="./index.html"><h4>Homepage</h4></a>
+            <a href="./login.html"><h4>Login</h4></a>
+            <a href="./Register.html"><h4>Register</h4></a>
+        </div>
+        <div class="article-actions-container">
+            <h4>GPU Server Status</h4>
+        </div>
+        <div class="main-wrapper">
+            <div class="sidebar-container">
+                <ol>
+                    <li>Choose the Divice</li>
+                    <li>Click "APPLY" Button</li>
+                </ol>
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th scope="col">Device </th>
+                    <th scope="col">RAM Available</th>
+                    <th scope="col">Users</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row" rowspan="4"><h3>NVIDIA GeForce RTX 4090</h3></th>
+                    <td>6G/24G</td>
+                    <td>2</td>
+                    <td><input type="button" value="APPLY"/></td>
+                </tr>
+                <tr>
+                    <td>4G/24G</td>
+                    <td>2</td>
+                    <td><input type="button" value="APPLY"/></td>
+                </tr>
+                <tr>
+                    <td>12G/24G</td>
+                    <td>1</td>
+                    <td><input type="button" value="APPLY"/></td>
+                </tr>
+                <tr>
+                    <td>15G/24G</td>
+                    <td>1</td>
+                    <td><input type="button" value="APPLY"/></td>
+                </tr>
+                <tr>
+                    <th scope="row" rowspan="3"><h3>NVIDIA A100 Tensor Core GPU</h3></th>
+                    <td>6G/20G</td>
+                    <td>1</td>
+                    <td><input type="button" value="APPLY"/></td>
+                </tr>
+                <tr>
+                    <td>4G/20G</td>
+                    <td>1</td>
+                    <td><input type="button" value="APPLY"/></td>
+                </tr>
+                <tr>
+                    <td>8G/40G</td>
+                    <td>1</td>
+                    <td><input type="button" value="APPLY"/></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="sidebar-container"></div>
+        </div>
+    </body>
+</html>
