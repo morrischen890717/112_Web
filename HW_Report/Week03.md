@@ -27,6 +27,7 @@
 2. 前往 register 頁面時將其以新分頁形式開啟 (target="\_blank")
 3. 文字置中 (align="center")
 4. 表單文字提示 (placeholder)
+5. CSS Flex & Grid
 
 ## 組員分工
 
