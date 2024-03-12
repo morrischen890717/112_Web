@@ -4,22 +4,22 @@
 
 1. html 檔案架構
 
-- <head></head>
-- <body></body>
+   - \<head>\</head>
+   - \<body>\</body>
 
 2. 基礎標籤使用
 
-- <title></title>
-- <h2></h2>
-- <p></p>
-- <br />
-- <u></u>
-- <a></a>
-- <ul></ul>
-- <table></table>
-- <form></form>
-- 巢狀表格使用 (如: rowspan)
-- 相對 URI
+   - \<title>\</title>
+   - \<h2>\</h2>
+   - \<p>\</p>
+   - \<br />
+   - \<u>\</u>
+   - \<a>\</a>
+   - \<ul>\</ul>
+   - \<table>\</table>
+   - \<form>\</form>
+   - 巢狀表格使用 (如: rowspan)
+   - 相對 URI
 
 ## 額外找了與當週上課主題相關之程式技術
 
