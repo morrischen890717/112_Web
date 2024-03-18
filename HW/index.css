@@ -1,0 +1,61 @@
+html {
+    background-color: #1b1b1b;
+    color: #cdcdcd;
+  }
+  h4 {
+    padding: 10px;
+  }
+  a {
+    color: #cdcdcd;
+  }
+  a:hover {
+    color: aqua;
+  }
+  li {
+    padding: 0 5% 5%;
+  }
+  body {
+    background-image: url('https://www.nvidia.com/content/dam/en-zz/Solutions/geforce/ada/rtx-4090/geforce-ada-4090-web-og-1200x630.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 90%;
+    margin: 0;
+  }
+  table {
+    margin: 0 5% 5%;
+    border-collapse: collapse;
+    border: 2px solid rgb(140 140 140);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    background-color: #343434;
+  }
+  caption {
+    padding: 10px;
+    font-weight: bold;
+  }
+  th,
+  td {
+    border: 1px solid rgb(160 160 160);
+    padding: 8px 10px;
+    text-align: center;
+  }
+  .top-navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+  }
+  .logo {
+    flex-grow: 1;
+  }
+  .article-actions-container {
+    display: flex;
+    background-color: #313131;
+    height: 5%;
+    margin-bottom: 3%;
+    align-items: center;
+    padding: 10px 5%;
+  }
+  
