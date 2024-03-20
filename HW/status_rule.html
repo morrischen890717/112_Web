@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <title>GPU Server Status</title>
+    <link rel="stylesheet" href="./status.css" />
+    <link rel="stylesheet" href="./nav.css" />
+  </head>
+  <body>
+    <div class="top-navigation">
+      <a href="./index.html" class="logo">Lab 402 Server</a>
+      <a href="./login.html"><h4>Login</h4></a>
+      <a href="./Register.html"><h4>Register</h4></a>
+    </div>
+    <div class="article-actions-container">
+      <h4>GPU Server Status > Rules</h4>
+    </div>
+    <div class="main-wrapper">
+      <div class="sidebar-container">
+        <ol>
+          <li><em><h3><a href="status_rule.html">Rules</a></h3></em></li>
+          <li><h3><a href="status_apply.html">Apply</a></h3></li>
+        </ol>
+      </div>
+      <div class="main-content">
+        <article>
+          <header><h1>Rules</h1></header>
+          <p>
+            <h3 id="manner">使用方式</h3>
+            填寫申請表單，填寫完畢後務必通知現任管理者。
+            註: 並不是先搶先贏，會評估優先使用程度以及合理性 ex.緊急專案等
+          </p>
+          <p>申請完成且核准後會從ntu信箱取得一組網址以及一組帳號密碼，此網址只可在CSIE內網下access。</p>
+            <ol>
+              <li>需外連需求的使用者請使用<a href="https://esystem.csie.ntu.edu.tw/nalab/vpn">VPN</a>連線。</li>
+              <li>生醫電資所的同學可以向CSIE工作站<a href="https://wslab.csie.ntu.edu.tw/contact/application_forms.html">申請</a>登入CSIE的帳號密碼。</li>
+            </ol>
+          <p>
+            <h3 id="rule">使用規定與建議</h3>
+            <ol>
+              <li>請時常同步備份server中的資料夾以及檔案，若檔案遺失管理員不負管理責任，也不會幫你從server做資料救援。</li>
+              <li>切勿將帳號租借給他人或任何營利行為，抓到第一次警告一次，第二次直接停權一學年。人在做天在看，你在幹嘛我server通通有紀錄。</li>
+              <li>續第2點，若特別情況如需要多人一起使用，可在申請表中提出並告知管理員有此情況，則可多人一起使用。</li>
+            </ol>
+          </p>
+          <div class="notecard">
+            <p>
+              <h3 id="notice">額外須知</h3>
+              目前提供之容器為pytorch架構為主的開發環境(linux base)，可自行安裝執行環境所需之packages<br>有其他需求可洽詢管理員。例如整合monai、Tensorflow等
+            </p>
+          </div>
+        </article>
+      </div>
+      <div class="sidebar-container">
+        <h2>In this page</h2>
+          <ul>
+            <li><a href="#manner">使用方式</a></li>
+            <li><a href="#rule">使用規定與建議</a></li>
+            <li><a href="#notice">額外須知</a></li>
+          </ul>
+      </div>
+    </div> 
+  </body>
+</html>

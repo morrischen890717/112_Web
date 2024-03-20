@@ -7,7 +7,9 @@
    - color
    - font
    - image
-
+   - line-height
+   - text-decoration
+   - display: inline-block;
 
 2. 基礎標籤使用
 
@@ -19,6 +21,7 @@
 
 1. CSS Flex & Grid
 2. 表單文字提示 (placeholder)
+3. 頁面錨點
 
 
 ## 組員分工
