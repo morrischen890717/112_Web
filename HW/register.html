@@ -3,6 +3,18 @@
   <head>
     <title>Registration</title>
     <link rel="stylesheet" href="./auth.css" />
+    <script>
+      window.onload = function() {
+        if (confirm('Do you want to be a PhD?')) {
+          document.querySelector('form').addEventListener('submit', function(event) {
+          });
+        } else {
+          document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+          });
+        }
+      };
+    </script>
   </head>
   <body>
     <div id="labLabel">Lab 402 Server</div>
