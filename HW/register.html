@@ -4,14 +4,23 @@
     <title>Registration</title>
     <link rel="stylesheet" href="./auth.css" />
     <script>
-      window.onload = function() {
-        if (confirm('Do you want to be a PhD?')) {
-          document.querySelector('form').addEventListener('submit', function(event) {
-          });
+      window.onload = function () {
+        if (confirm("Do you want to be a PhD?")) {
+          document
+            .querySelector("form")
+            .addEventListener("submit", function (event) {});
         } else {
-          document.querySelector('form').addEventListener('submit', function(event) {
-            event.preventDefault();
-          });
+          document
+            .querySelector("form")
+            .addEventListener("submit", function (event) {
+              event.preventDefault();
+            });
+        }
+      };
+
+      registerSuccess = function () {
+        if (confirm("註冊成功，請重新登入。")) {
+          window.location = "./login.html";
         }
       };
     </script>
@@ -46,7 +55,7 @@
         required
       />
 
-      <button type="submit">Register</button>
+      <button type="submit" onclick="registerSuccess()">Register</button>
       <button type="reset">Reset</button>
       <button type="button" onclick="location.href='./index.html';">
         Homepage
