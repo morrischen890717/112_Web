@@ -1,4 +1,4 @@
-# HW1 Report
+# HW5 Report
 
 ## 練習了哪些當週上課的主題
 
@@ -9,6 +9,8 @@
    - function
    - alert, confirm
    - getElementById
+   - createElement
+   - appendChild
 
 ## 額外找了與當週上課主題相關之程式技術
 
