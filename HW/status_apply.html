@@ -3,6 +3,11 @@
     <title>GPU Server Status</title>
     <link rel="stylesheet" href="./status.css" />
     <link rel="stylesheet" href="./nav.css" />
+    <link rel="stylesheet" href="./toast.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
   </head>
   <body>
     <div class="top-navigation">
@@ -16,86 +21,145 @@
     <div class="main-wrapper">
       <div class="sidebar-container">
         <ol>
-          <li><h3><a href="status_rule.html">Rules</a></h3></li>
-          <li><em><h3><a href="status_apply.html">Apply</a></h3></em></li>
+          <li>
+            <h3><a href="status_rule.html">Rules</a></h3>
+          </li>
+          <li>
+            <em
+              ><h3><a href="status_apply.html">Apply</a></h3></em
+            >
+          </li>
         </ol>
       </div>
       <div class="main-content">
-      <article>
-        <header><h1>Apply</h1></header>
-        <section id="status">
-          <h2>使用狀態</h2>
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Device</th>
-                <th scope="col">Number</th>
-                <th scope="col">Memory</th>
-                <th scope="col">Users</th>
-                <th scope="col"></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row" rowspan="4"><h4>NVIDIA GeForce RTX 4090</h4></th>
-                <td>1</td>
-                <td>6G / 24G</td>
-                <td>2</td>
-                <td><input class="button-wrap" type="button" value="APPLY" onclick="addHistory(1)"/></td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>4G / 24G</td>
-                <td>1</td>
-                <td><input class="button-wrap" type="button" value="APPLY" onclick="addHistory(2)"/></td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>12G / 24G</td>
-                <td>1</td>
-                <td><input class="button-wrap" type="button" value="APPLY" onclick="addHistory(3)"/></td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>15G / 24G</td>
-                <td>1</td>
-                <td><input class="button-wrap" type="button" value="APPLY" onclick="addHistory(4)"/></td>
-              </tr>
-              <tr>
-                <th scope="row" rowspan="3"><h4>NVIDIA A100 Tensor Core GPU</h4></th>
-                <td>5</td>
-                <td>6G / 20G</td>
-                <td>1</td>
-                <td><input class="button-wrap" type="button" value="APPLY" onclick="addHistory(5)"/></td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>4G / 20G</td>
-                <td>2</td>
-                <td><input class="button-wrap" type="button" value="APPLY" onclick="addHistory(6)"/></td>
-              </tr>
-              <tr>
-                <td>7</td>
-                <td>8G / 40G</td>
-                <td>1</td>
-                <td><input class="button-wrap" type="button" value="APPLY" onclick="addHistory(7)"/></td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-        <section id="history">
-          <h2>申請紀錄</h2>
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Time</th>
-                <th scope="col">Number</th>
-              </tr>
-            </thead>
-            <tbody id="history-table"></tbody>
-          </table>
-        </section>
-      </article>
+        <article>
+          <header><h1>Apply</h1></header>
+          <section id="status">
+            <h2>使用狀態</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Device</th>
+                  <th scope="col">Number</th>
+                  <th scope="col">Memory</th>
+                  <th scope="col">Users</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row" rowspan="4">
+                    <h4>NVIDIA GeForce RTX 4090</h4>
+                  </th>
+                  <td>1</td>
+                  <td>6G / 24G</td>
+                  <td>2</td>
+                  <td>
+                    <input
+                      class="button-wrap"
+                      type="button"
+                      value="APPLY"
+                      onclick="apply(1)"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>4G / 24G</td>
+                  <td>1</td>
+                  <td>
+                    <input
+                      class="button-wrap"
+                      type="button"
+                      value="APPLY"
+                      onclick="apply(2)"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>12G / 24G</td>
+                  <td>1</td>
+                  <td>
+                    <input
+                      class="button-wrap"
+                      type="button"
+                      value="APPLY"
+                      onclick="apply(3)"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>15G / 24G</td>
+                  <td>1</td>
+                  <td>
+                    <input
+                      class="button-wrap"
+                      type="button"
+                      value="APPLY"
+                      onclick="apply(4)"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" rowspan="3">
+                    <h4>NVIDIA A100 Tensor Core GPU</h4>
+                  </th>
+                  <td>5</td>
+                  <td>6G / 20G</td>
+                  <td>1</td>
+                  <td>
+                    <input
+                      class="button-wrap"
+                      type="button"
+                      value="APPLY"
+                      onclick="apply(5)"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>4G / 20G</td>
+                  <td>2</td>
+                  <td>
+                    <input
+                      class="button-wrap"
+                      type="button"
+                      value="APPLY"
+                      onclick="apply(6)"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>8G / 40G</td>
+                  <td>1</td>
+                  <td>
+                    <input
+                      class="button-wrap"
+                      type="button"
+                      value="APPLY"
+                      onclick="apply(7)"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <section id="history">
+            <h2>申請紀錄</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Time</th>
+                  <th scope="col">Number</th>
+                </tr>
+              </thead>
+              <tbody id="history-table"></tbody>
+            </table>
+          </section>
+        </article>
       </div>
       <div class="sidebar-container">
         <h2>In this page</h2>
@@ -105,6 +169,7 @@
         </ul>
       </div>
     </div>
-    <script src="status.js"></script>
+    <script src="./status.js"></script>
+    <script src="./toast.js"></script>
   </body>
 </html>
