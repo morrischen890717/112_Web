@@ -29,3 +29,28 @@ function addHistory(num) {
 
     history_table.appendChild(tr);
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+
+	const observer = new IntersectionObserver(entries => {
+        console.log("haha")
+		entries.forEach(entry => {
+			const id = entry.target.getAttribute('id');
+			if (entry.intersectionRatio > 0) {
+				document.querySelector(`.sidebar-container ul li a[href="#${id}"]`).parentElement.classList.add('active');
+			} else {
+				document.querySelector(`.sidebar-container ul li a[href="#${id}"]`).parentElement.classList.remove('active');
+			}
+		});
+	}, 
+    {
+        root: null,
+        rootMargin: "-300px 0px -300px 0px",
+        threshold: 0,
+    });
+
+	// Track all sections that have an `id` applied
+	document.querySelectorAll('section').forEach((section) => {
+		observer.observe(section);
+	});
+});
