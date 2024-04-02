@@ -5,16 +5,11 @@
     <link rel="stylesheet" href="./auth.css" />
     <script>
       window.onload = function () {
-        if (confirm("Do you want to be a PhD?")) {
-          document
-            .querySelector("form")
-            .addEventListener("submit", function (event) {});
+        if (!confirm("Do you want to be a PhD?")) {
+          window.location.href = 'https://www.csie.ntu.edu.tw/zh_tw/Admission/Announcement14/逕行修讀博士學位-95781926';
         } else {
-          document
-            .querySelector("form")
-            .addEventListener("submit", function (event) {
-              event.preventDefault();
-            });
+          document.querySelector("form").addEventListener("submit", function (event) {
+          });
         }
       };
 
