@@ -32,8 +32,4 @@ showToast = function (
   }
 
   document.body.appendChild(box);
-
-  setTimeout(function () {
-    box.remove();
-  }, duration);
 };
