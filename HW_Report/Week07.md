@@ -1,15 +1,19 @@
-# HW6 Report
+# HW7 Report
 
 ## 練習了哪些當週上課的主題
 
 1. form
 2. form's onsubmit
 3. form's default action
-
+4. string.length
+5. string.endsWith
+6. Date
 
 ## 額外找了與當週上課主題相關之程式技術
 
-1. 
+1. DOMContentLoaded
+2. IntersectionObserver
+3. Object.keys.includes
 
 ## 組員分工
 
