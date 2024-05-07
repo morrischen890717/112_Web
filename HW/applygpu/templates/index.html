@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <title>Lab 402 Server</title>
+    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./nav.css" />
+    <script>
+      displayDateTime = function () {
+        var currentDateTime = new Date();
+        var year = currentDateTime.getFullYear();
+        var month =
+          (currentDateTime.getMonth() + 1 < 10 ? "0" : "") +
+          (currentDateTime.getMonth() + 1);
+        var day =
+          (currentDateTime.getDate() < 10 ? "0" : "") +
+          currentDateTime.getDate();
+        var hours =
+          (currentDateTime.getHours() < 10 ? "0" : "") +
+          currentDateTime.getHours();
+        var minutes =
+          (currentDateTime.getMinutes() < 10 ? "0" : "") +
+          currentDateTime.getMinutes();
+        var seconds =
+          (currentDateTime.getSeconds() < 10 ? "0" : "") +
+          currentDateTime.getSeconds();
+
+        var currentDateTimeString =
+          year +
+          "/" +
+          month +
+          "/" +
+          day +
+          " " +
+          hours +
+          ":" +
+          minutes +
+          ":" +
+          seconds;
+        document.getElementById("dateTime").innerHTML = currentDateTimeString;
+      };
+
+      // update every second
+      setInterval(displayDateTime, 1000);
+    </script>
+  </head>
+  <body>
+    <div class="top-navigation">
+      <a href="/" class="logo">Lab 402 Server</a>
+      <a href="./login.html"><h4>Login</h4></a>
+      <a target="_blank" href="./Register.html"><h4>Register</h4></a>
+      <a href="./status_rule.html"><h4>Status</h4></a>
+      <a href="https://sites.google.com/view/cad-csie-ntu/%E9%A6%96%E9%A0%81"
+        ><h4>Lab</h4></a
+      >
+    </div>
+    <p>目前時間：<span id="dateTime"></span></p>
+    <p>This is a website for students in Lab 402 to apply for server.</p>
+    <br />
+    <p>If you do not have a account, please Register first!.</p>
+    <br />
+    <article id="news">
+      <div class="inner">
+        <h3>Latest News</h3>
+        <table>
+          {% for news in newss %}
+          <tr>
+            <th>{{news.date}}</th>
+            <td><a href="/news/{{news.slug}}">{{news.title}}</a></td>
+          </tr>
+          {% endfor %}
+        </table>
+      </div>
+    </article>
+  </body>
+</html>
