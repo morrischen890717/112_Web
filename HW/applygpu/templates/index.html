@@ -1,8 +1,9 @@
+{% load static %}
 <html>
   <head>
     <title>Lab 402 Server</title>
-    <link rel="stylesheet" href="./index.css" />
-    <link rel="stylesheet" href="./nav.css" />
+    <link rel="stylesheet" href="{% static "css/index.css" %}" /> <link
+    rel="stylesheet" href="{% static "css/nav.css" %}" />
     <script>
       displayDateTime = function () {
         var currentDateTime = new Date();
