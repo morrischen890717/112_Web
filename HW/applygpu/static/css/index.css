@@ -3,6 +3,7 @@ html {
   color: #cdcdcd;
 }
 h4 {
+  font-size: 1rem;
   padding: 10px;
 }
 a {
@@ -23,7 +24,9 @@ body {
   background-position: center;
   height: 90%;
   margin: 0;
+  color: #cdcdcd;
 }
+/*
 table {
   margin: 0 5% 5%;
   border-collapse: collapse;
@@ -32,16 +35,19 @@ table {
   letter-spacing: 1px;
   background-color: #343434;
 }
+*/
 caption {
   padding: 10px;
   font-weight: bold;
 }
+/*
 th,
 td {
   border: 1px solid rgb(160 160 160);
   padding: 8px 10px;
   text-align: center;
 }
+*/
 .article-actions-container {
   display: flex;
   background-color: #313131;
@@ -49,4 +55,12 @@ td {
   margin-bottom: 3%;
   align-items: center;
   padding: 10px 5%;
+}
+#news {
+  margin: 0 auto;
+}
+thead {
+  font-size: 1.5rem;
+  color: lemonchiffon;
+  text-align: center;
 }
