@@ -1,5 +1,9 @@
 .top-navigation {
-  height: 4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 5%;
 }
 .logo {
   text-decoration: none;
