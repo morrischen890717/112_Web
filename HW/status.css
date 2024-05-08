@@ -1,7 +1,7 @@
 html {
   background-color: #1b1b1b;
   color: #cdcdcd;
-  line-height: 1.75
+  line-height: 1.75;
 }
 h4 {
   padding: 10px;
@@ -9,18 +9,15 @@ h4 {
 a {
   color: #cdcdcd;
   padding: 0.25rem;
-  text-decoration: none
+  text-decoration: none;
 }
 a:hover {
   color: aqua;
 }
-.top-navigation {
-  height: 4rem
-}
-.main-content a{
+.main-content a {
   color: #cdcdcd;
   padding: 0.25rem;
-  text-decoration: underline
+  text-decoration: underline;
 }
 body {
   height: 90%;
@@ -51,8 +48,8 @@ td {
   padding: 0.25rem 0.5rem;
 }
 
-ul{
-  padding: 0px
+ul {
+  padding: 0px;
 }
 
 .sidebar-container {
@@ -69,18 +66,18 @@ ul{
 
 em {
   display: inline-block;
-  background-color: rgba(0, 133, 242, .1);
+  background-color: rgba(0, 133, 242, 0.1);
   width: 100%;
   padding: 0.25rem 0.25rem 0.25rem 0.5rem;
-  border-left: 1px solid #5e9eff
+  border-left: 1px solid #5e9eff;
 }
 
 .active {
   display: inline-block;
-  background-color: rgba(0, 133, 242, .1);
+  background-color: rgba(0, 133, 242, 0.1);
   width: 100%;
   padding: 0.25rem 0.25rem 0.25rem 0.5rem;
-  border-left: 1px solid #5e9eff
+  border-left: 1px solid #5e9eff;
 }
 
 .article-actions-container {
@@ -93,16 +90,16 @@ em {
 .main-wrapper {
   display: grid;
   gap: 3rem;
-  grid-template-columns: minmax(0,1fr) minmax(0,2.5fr) minmax(0,15rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.5fr) minmax(0, 15rem);
 }
 
 .main-content {
   padding-top: 3rem;
-  padding-bottom: 3rem
+  padding-bottom: 3rem;
 }
 .notecard {
-  background-color: rgba(0, 133, 242, .1);
+  background-color: rgba(0, 133, 242, 0.1);
   padding: 1rem 1rem 1rem 3rem;
   border: 1px solid #696969;
-  border-left: 4px solid #5e9eff
+  border-left: 4px solid #5e9eff;
 }
