@@ -2,15 +2,22 @@
 
 ## 練習了哪些當週上課的主題
 
-1. 架設Django環境
+1. 架設 Django 環境
 2. Startapp & runserver
-3. Post 貼文
-4. Template
-
+3. migration
+4. Model, View, Template 架構
+5. Post 貼文 (Latest News)
+6. Template
+7. URL setting
+8. CSS Grid System
+9. add resource (image, css, js) from local
+10. Bootstrap
 
 ## 額外找了與當週上課主題相關之程式技術
 
-1. 
+1. SlugField
+2. primary_key=True
+3. render (instead of get_template)
 
 ## 組員分工
 
