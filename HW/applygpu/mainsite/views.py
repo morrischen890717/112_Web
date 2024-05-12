@@ -13,3 +13,9 @@ def showNews(request, slug):
         return render(request, 'news.html', locals())
     except:
         return redirect('/')
+
+def applyRule(request):
+    return render(request, 'applyRule.html')
+
+def applyStatus(request):
+    return render(request, 'applyStatus.html')
