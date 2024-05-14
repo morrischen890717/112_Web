@@ -13,3 +13,11 @@ class News(models.Model):
     
     def __str__(self):
         return self.title
+
+class User(models.Model):
+    studentId = models.CharField(max_length=20, primary_key=True)
+    email = models.EmailField(max_length=150, unique=True)
+    password = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.studentId
