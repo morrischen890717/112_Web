@@ -10,6 +10,9 @@
 ## 額外找了與當週上課主題相關之程式技術
 
 1. render (instead of get_template)
+2. EmailField
+3. primary_key=True
+4. unique=True
 
 ## 組員分工
 
