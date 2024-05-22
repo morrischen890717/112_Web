@@ -25,5 +25,5 @@ def simple_mail(repuest):
     send_mail(subject='Your Subject', 
               message='Your Message body', 
               from_email='test@lab402',
-              recipient_list=['r11922162@g.ntu.edu.tw'])
+              recipient_list=['testing@gmail.com'])
     return HttpResponse('Message Send')
