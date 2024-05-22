@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import News
+from django.core.mail import send_mail
 
 # Create your views here.
 def homepage(request):
@@ -19,3 +20,10 @@ def applyRule(request):
 
 def applyStatus(request):
     return render(request, 'applyStatus.html')
+
+def simple_mail(repuest):
+    send_mail(subject='Your Subject', 
+              message='Your Message body', 
+              from_email='test@lab402',
+              recipient_list=['r11922162@g.ntu.edu.tw'])
+    return HttpResponse('Message Send')
