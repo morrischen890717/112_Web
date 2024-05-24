@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import News, User
+from django.core.mail import send_mail
 
 # Create your views here.
 def homepage(request):
@@ -38,6 +39,10 @@ def register(request):
     newUser.save()
     return redirect('/')
 
-        
+def simple_mail(repuest):
+    send_mail(subject='Your Subject', 
+              message='Your Message body', 
+              from_email='test@lab402',
+              recipient_list=['testing@gmail.com'])
+    return HttpResponse('Message Send')
 
-#def login(request):
