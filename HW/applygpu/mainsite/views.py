@@ -31,9 +31,9 @@ def register(request):
         password = request.POST['password']
     except:
         studentId = email = password = None
-    if User.objects.filter(studentId=studentId).exist():
+    if User.objects.filter(studentId=studentId).first():
         print(f'studentId {studentId} is already exist.')
-    if User.objects.filter(email=email).exist():
+    if User.objects.filter(email=email).first():
         print(f'email {email} is already exist.')
     newUser = User(studentId=studentId, email=email, password=password)
     newUser.save()

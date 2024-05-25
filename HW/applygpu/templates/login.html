@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration</title>
+    <link rel="stylesheet" href="./auth.css" />
+  </head>
+  <body>
+    <div id="labLabel">Lab 402 Server</div>
+    <form action="#" method="post">
+      <label for="username">Student ID:</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Enter Student ID"
+        required
+      />
+
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter Email"
+        required
+      />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter Password"
+        required
+      />
+
+      <button type="submit">Login</button>
+      <button type="reset">Reset</button>
+      <button type="button" onclick="location.href='./index.html';">
+        Homepage
+      </button>
+    </form>
+  </body>
+</html>

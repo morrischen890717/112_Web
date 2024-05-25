@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Registration</title>
+    <link rel="stylesheet" href="{% static "css/auth.css" %}" />
+    <script>
+      window.onload = function () {
+        if (!confirm("Do you want to be a PhD?")) {
+          window.location.href =
+            "https://www.csie.ntu.edu.tw/zh_tw/Admission/Announcement14/逕行修讀博士學位-95781926";
+        } else {
+          alert("恭喜！接下來可以申請GPU了！");
+          document
+            .querySelector("form")
+            .addEventListener("submit", function (event) {});
+        }
+      };
+
+      check = function (form) {
+        // 驗證使用者名稱是否為空
+        if (form.username.value.length < 6) {
+          alert("使用者名稱至少需 6 個字元！");
+          return false;
+        } else if (!form.email.value.endsWith("@ntu.edu.tw")) {
+          alert("請使用 NTU 信箱！");
+          return false;
+        } else if (form.password.value.length < 8) {
+          alert("密碼至少需 8 個字元！");
+          return false;
+        } else {
+          alert("註冊成功，請重新登入。");
+          return true;
+        }
+      };
+      // registerSuccess = function () {
+      //   alert("註冊成功，請重新登入。");
+      //   window.location = "./login.html";
+      // };
+    </script>
+  </head>
+  <body>
+    <div id="labLabel">Lab 402 Server</div>
+    <form action="/register/" method="post" onsubmit="return check(this);">
+      {% csrf_token %}
+      <label for="username">Student ID:</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Enter Student ID"
+        required
+      />
+
+      <label for="email">Email:</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="Enter Email"
+        required
+      />
+
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        placeholder="Enter Password"
+        required
+      />
+
+      <button type="submit">Register</button>
+      <button type="reset">Reset</button>
+      <button type="button" onclick="location.href='./index.html';">
+        Homepage
+      </button>
+    </form>
+  </body>
+</html>

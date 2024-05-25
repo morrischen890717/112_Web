@@ -24,6 +24,7 @@ urlpatterns = [
     path('news/<slug:slug>/', showNews),
     path('apply_rule/', applyRule),
     path('apply_status/', applyStatus),
+    path('register_page/', registerPage),
     path('register/', register),
     path('mail', simple_mail),
 ]
