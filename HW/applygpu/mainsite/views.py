@@ -39,6 +39,20 @@ def register(request):
     newUser.save()
     return redirect('/')
 
+def loginPage(request):
+    return render(request, 'login.html')
+
+def login(request):
+    try:
+        studentId = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+    except:
+        studentId = email = password = None
+    if User.objects.filter(studentId=studentId, email=email, password=password).first():
+        return redirect('/')
+    return render(request, 'login.html')
+
 def simple_mail(repuest):
     send_mail(subject='Your Subject', 
               message='Your Message body', 
