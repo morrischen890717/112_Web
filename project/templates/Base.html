@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<head>
+    <title>Base</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="top-navigation">
+    <a href="/" class="logo">Project</a>
+    <a href="/"><h4>Login</h4></a>
+  </div>
+  <div class="container-fluid">
+      <div class="row">
+          <!-- 左邊欄 -->
+          <div class="col-sm-4 col-md-4">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3> Event</h3>
+                </div>
+                <div class="panel-body">
+                  <button type="button" class="btn btn-primary">Click Me</button>
+                </div>
+              </div>
+          </div>
+          <!-- 主要內容 -->
+          <div class="col-sm-8 col-md-8">
+              <div class="main-wrapper">
+                {% block main-wrapper %}{% endblock %}
+                  <p>這是主要的內容區域。</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>
+</html>
