@@ -1,0 +1,84 @@
+html {
+  background-color: #1b1b1b;
+  color: #cdcdcd;
+  line-height: 1.75;
+}
+h2 {
+  padding: 10px;
+}
+a {
+  color: #cdcdcd;
+  padding: 0.25rem;
+  text-decoration: none;
+}
+a:hover {
+  color: aqua;
+}
+.main-content a {
+  color: #cdcdcd;
+  padding: 0.25rem;
+  text-decoration: underline;
+}
+body {
+  height: 90%;
+  margin: 0;
+}
+table {
+  border-collapse: collapse;
+  border: 2px solid rgb(140 140 140);
+  font-size: 1rem;
+  letter-spacing: 1px;
+  background-color: #343434;
+}
+p {
+  margin: 1rem 0 2rem;
+}
+caption {
+  padding: 10px;
+  font-weight: bold;
+}
+th,
+td {
+  border: 1px solid rgb(160 160 160);
+  padding: 0.5rem 0.75rem;
+  text-align: center;
+}
+
+.button-wrap {
+  padding: 0.25rem 0.5rem;
+}
+
+ul {
+  padding: 0px;
+}
+
+.sidebar-container {
+  position: sticky;
+  top: 0px;
+  height: 100vh;
+}
+
+.sidebar-container li {
+  list-style: none;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+.article-actions-container {
+  display: flex;
+  background-color: #313131;
+  height: 5%;
+  align-items: center;
+  padding: 0 5%;
+}
+.main-wrapper {
+  display: grid;
+  gap: 3rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2.5fr) minmax(0, 15rem);
+}
+
+.main-content {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+
