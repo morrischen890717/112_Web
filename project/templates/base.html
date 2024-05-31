@@ -3,7 +3,8 @@
   <head>
     <title>base</title>
     <link rel="stylesheet" href="{% static "css/base.css" %}" /> <link
-    rel="stylesheet" href="{% static "css/nav.css" %}" />
+    rel="stylesheet" href="{% static "css/nav.css" %}" /> 
+    {% block extra-css %}{% endblock %}
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"

@@ -1,16 +1,30 @@
-{% extends "base.html" %} {% block main-wrapper %}
+{% extends "base.html" %}
+{% load static %}
+{% block extra-css %} 
+<link rel="stylesheet" href="{% static "css/eventPage.css" %}" /> 
+{% endblock %} 
+{% block main-wrapper %}
 <div class="main-content">
   <header><h1>新增活動</h1></header>
   <section id="new-event">
     <form action="/eventPage" method="get">
       <label for="event-name">活動名稱</label>
-      <input type="text" id="event-name" placeholder="請輸入活動名稱" />
-      <label for="email-text">Email 內容</label>
+      <br />
       <input
         type="text"
-        id="email-text"
-        placeholder="請輸入 Email 的發送內容"
+        id="event-name"
+        placeholder="請輸入活動名稱"
+        value=""
       />
+      <br />
+      <label for="email-text">Email 內容</label>
+      <br />
+      <textarea
+        id="email-text"
+        rows="4"
+        cols="50"
+        placeholder="請輸入 Email 的發送內容"
+      ></textarea>
       <input type="submit" value="新增活動" />
     </form>
   </section>
