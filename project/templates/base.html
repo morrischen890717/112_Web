@@ -16,7 +16,7 @@
     <div class="top-navigation">
       <a href="/" class="logo">Project</a>
       <a href="/"><h4>Login</h4></a>
-      <button id="themeToggle" type="button">Toggle Dark Mode</button>
+      <!-- <button id="themeToggle" type="button">Toggle Dark Mode</button> -->
     </div>
     <div class="main-wrapper">
       <div class="sidebar-container">
@@ -26,6 +26,29 @@
       </div>
       {% block main-wrapper %}{% endblock %}
     </div>
+
+    <!-- my sun dark mode button-->
+    <div class="scene scene--card sundarkmodep">
+      <div class="card", id="themeToggle">
+        <div class="card__face card__face--front"><span class="fa fa-moon" aria-hidden="true"></div>
+        <div class="card__face card__face--back"><span class="fa fa-sun" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <!-- my sun dark mode button | flip animation-->    
+    <script type="text/javascript">
+      var card = document.querySelector('.card');
+      card.addEventListener( 'click', function() {
+        card.classList.toggle('is-flipped');          
+    });
+    </script>  
+
+    <!-- my sun dark mode button | change color-->  
+    <!-- <script type="text/javascript">
+      $('.sundarkmodep').click(function(){
+        $('*').toggleClass("darkmodecolor");
+    });
+    </script> -->
     <script>
       document.getElementById('themeToggle').addEventListener('click', function() {
         var darkTheme = document.getElementById('darkTheme');
