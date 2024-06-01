@@ -2,8 +2,9 @@
 <html>
   <head>
     <title>base</title>
-    <link rel="stylesheet" href="{% static "css/base.css" %}" /> <link
-    rel="stylesheet" href="{% static "css/nav.css" %}" /> 
+    <link rel="stylesheet" href="{% static "css/light.css" %}">
+    <link rel="stylesheet" href="{% static "css/dark.css" %}" id="darkTheme" disabled>
+    <link rel="stylesheet" href="{% static "css/nav.css" %}" /> 
     {% block extra-css %}{% endblock %}
     <link
       rel="stylesheet"
@@ -11,9 +12,11 @@
     />
   </head>
   <body>
+
     <div class="top-navigation">
       <a href="/" class="logo">Project</a>
       <a href="/"><h4>Login</h4></a>
+      <button id="themeToggle" type="button">Toggle Dark Mode</button>
     </div>
     <div class="main-wrapper">
       <div class="sidebar-container">
@@ -23,5 +26,15 @@
       </div>
       {% block main-wrapper %}{% endblock %}
     </div>
+    <script>
+      document.getElementById('themeToggle').addEventListener('click', function() {
+        var darkTheme = document.getElementById('darkTheme');
+        if (darkTheme.disabled) {
+          darkTheme.disabled = false;
+        } else {
+          darkTheme.disabled = true;
+        }
+      });
+    </script>
   </body>
 </html>
