@@ -1,8 +1,10 @@
 from django.shortcuts import render
+from .models import Event
 
 # Create your views here.
 def homepage(request):
     return render(request, 'base.html')
 
 def eventPage(request):
-    return render(request, 'eventPage.html')
+    events = Event.objects.all()
+    return render(request, 'eventPage.html', locals())
