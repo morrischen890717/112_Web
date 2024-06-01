@@ -14,6 +14,7 @@ class User(models.Model):
 
 class Event(models.Model):
     eventName = models.CharField(max_length=150)
+    eventDateTime = models.DateTimeField()
     createUser = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name = 'createdEvents')
     joinedUsers = models.ManyToManyField(User, related_name='joinedEvents', blank=True)
     max_limit = models.PositiveIntegerField()
