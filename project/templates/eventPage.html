@@ -19,7 +19,7 @@
       <tbody>
         {% for event in events %}
         <tr>
-          <td>{{ event.eventName }}</td>
+          <td><a href="/participantPage/{{event.eventName}}">{{ event.eventName }}</a></td>
           <td>{{ event.eventDateTime }}</td>
           <td>{{ event.joinedUsers.count }}</td>
           <td>{{ event.max_limit }}</td>
@@ -35,6 +35,7 @@
       <input
         type="text"
         id="event-name"
+        name="event-name"
         placeholder="請輸入活動名稱"
         value=""
       />

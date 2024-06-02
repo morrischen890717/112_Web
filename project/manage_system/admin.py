@@ -6,7 +6,8 @@ class UserAdmin(admin.ModelAdmin):
     list_display = ('username', 'email', 'createDate')
 
 class EventAdmin(admin.ModelAdmin):
-    list_display = ('eventName', 'eventDateTime', 'createUserId', 'createUsername', 'numberOfJoinedUsers')
+    # list_display = ('eventName', 'eventDateTime', 'createUserId', 'createUsername', 'numberOfJoinedUsers')
+    list_display = ('eventName', 'createDate')
 
     def createUserId(self, obj):
         return obj.createUser.id

@@ -1,0 +1,40 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block extra-css %} 
+  <link rel="stylesheet" href="{% static "css/eventPage.css" %}" /> 
+{% endblock %} 
+{% block main-wrapper %}
+<div class="main-content">
+  <header><h1>參與列表</h1></header>
+  <section id="events-list">
+    <table>
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <form>
+        <tbody>
+          {% for participant in participants %}
+          <tr>
+            <td>{{ participant.0 }}</td>
+            <td>{{ participant.1 }}</td>
+            <td>{{ participant.2 }}</td>
+            <td>
+              <select name="participants_status">
+                <option value = 'none'>None</option>
+                <option value = 'accept'>Accept</option>
+                <option value = 'reject'>Reject</option>
+              </select>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+        <button type="submit">Send!</button>
+      </form>
+    </table>
+  </section>
+</div>
+{% endblock %}
