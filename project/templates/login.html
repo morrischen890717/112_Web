@@ -1,0 +1,12 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block main-wrapper %}
+<div class="main-content">
+    <header><h1>登入頁面</h1></header>
+    {% for message in messages %}
+        <div class='alert alert-{{message.tag}}'>
+            {{message}}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

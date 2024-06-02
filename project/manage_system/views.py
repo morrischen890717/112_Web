@@ -1,5 +1,7 @@
-from django.shortcuts import render
-from .models import Event
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .models import Event, User
+from django.contrib.auth.forms import UserCreationForm
 from .api.backend import initializeEventSetting, getAllParticipant, acceptSpecifiedParticipant
 
 # Create your views here.
@@ -34,3 +36,18 @@ def participantPage(request, eventName):
     participants = getAllParticipant(event.sheetId)
 
     return render(request, 'participantPage.html', locals())
+
+def login(request):
+    return render(request, 'login.html')
+#註冊
+def register(request):
+    form = UserCreationForm()
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/login')  #重新導向到登入畫面
+    context = {
+        'form': form
+    }
+    return render(request, 'register.html', context)
