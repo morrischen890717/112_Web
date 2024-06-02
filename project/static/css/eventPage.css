@@ -1,6 +1,8 @@
 input[type="text"],
 textarea {
-  width: 80%;
+  width: 100%;
+  color: white;
+  background-color: black;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -24,6 +26,10 @@ input[type="submit"]:hover {
   background-color: #45a049;
 }
 
+input[type="text"]::placeholder, textarea::placeholder {
+  color: #f2f2f2;
+}
+
 div.main-content {
   border-radius: 5px;
   background-color: #f2f2f2; 
@@ -34,3 +40,47 @@ header, label {
   color: black;
 }
 
+
+
+
+
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+td#event-name {
+  text-align: left;
+}
+
+/*th {
+    background-color: #f4f4f4;
+}*/
+
+tbody tr:nth-child(odd) {
+    background-color: DimGrey;
+}
+
+tbody tr:nth-child(even) {
+    background-color: DarkSlateGrey;
+}
