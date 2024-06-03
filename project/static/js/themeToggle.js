@@ -1,25 +1,38 @@
 // Function to toggle the theme
-function toggleTheme() {
-    var darkTheme = document.getElementById('darkTheme');
-    if (darkTheme.disabled) {
+function setTheme() {
+  var theme = localStorage.getItem('theme');
+  var darkThemes = document.querySelectorAll('#darkTheme');
+  if(theme === 'dark'){
+    darkThemes.forEach(function(darkTheme){
       darkTheme.disabled = false;
-      localStorage.setItem('theme', 'dark');
-    } else {
-      darkTheme.disabled = true;
-      localStorage.setItem('theme', 'light');
-    }
+    });
   }
+  else{
+    darkThemes.forEach(function(darkTheme){
+      darkTheme.disabled = true;
+    });
+  }
+}
+
+function toggleTheme() {
+  var theme = localStorage.getItem('theme');
+  var darkThemes = document.querySelectorAll('#darkTheme');
+  if (theme === 'dark'){
+    localStorage.setItem('theme', 'light');
+  }
+  else{
+    localStorage.setItem('theme', 'dark');
+  }
+  setTheme();
+}
   
   // Set the initial theme based on localStorage
   window.onload = function() {
-    var darkTheme = document.getElementById('darkTheme');
     var theme = localStorage.getItem('theme');
     if (theme === 'dark') {
-      darkTheme.disabled = false;
       document.querySelector('.card').classList.add('is-flipped');
-    } else {
-      darkTheme.disabled = true;
     }
+    setTheme();
   
     // Add event listener to the toggle button
     document.getElementById('themeToggle').addEventListener('click', toggleTheme);
