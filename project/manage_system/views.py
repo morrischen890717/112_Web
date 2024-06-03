@@ -13,16 +13,15 @@ def homepage(request):
 
 @login_required(login_url='login/')
 def eventPage(request):
-    try:
-        event_name = request.GET['event-name']
-        sheet_id, draft_id = initializeEventSetting(event_name)
-    except:
-        event_name, sheetId, draftId = None, None, None
-        print("The event is not created because the corresponding sheet and draft cannot be found.")
+    # try:
+    #     event_name = request.GET['event-name']
+    #     sheet_id, draft_id = initializeEventSetting(event_name)
+    # except:
+    #     event_name, sheetId, draftId = None, None, None
+    #     print("The event is not created because the corresponding sheet and draft cannot be found.")
 
-    if event_name != None:            
-        Event.objects.create(eventName=event_name, sheetId=sheet_id, draftId=draft_id)
-
+    # if event_name != None:            
+    #     Event.objects.create(eventName=event_name, sheetId=sheet_id, draftId=draft_id)
     events = Event.objects.all()
     return render(request, 'eventPage.html', locals())
 
@@ -45,6 +44,7 @@ def participantPage(request, eventName):
 
     return render(request, 'participantPage.html', locals())
 
+@login_required(login_url='login/')
 def allowlistPage(request):
 
     allow_participants = getAllAllowlist()
@@ -99,5 +99,16 @@ def createEvent(request):
 def saveNewEvent(request):
     form = EventForm(request.POST)
     if form.is_valid():
+        try:
+            eventName = form.cleaned_data['eventName']
+            sheet_id, draft_id = initializeEventSetting(eventName)
+        except:
+            eventName, sheetId, draftId = None, None, None
+            print("The event is not created because the corresponding sheet and draft cannot be found.")
+    if eventName != None:            
         form.save()
+        event = Event.objects.get(eventName=eventName)
+        event.sheetId, event.draftId= sheet_id, draft_id
+        event.save()
+
     return redirect('/eventPage')

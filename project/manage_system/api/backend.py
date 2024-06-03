@@ -42,7 +42,7 @@ def getAllParticipant(sheet_id: str):
     # TODO(developer) - Handle errors from drive API.
     print(f"An error occurred: {error}")
 
-# When user accept specified participant (Add parameter event.slug: int)
+# When user accept specified participant
 def acceptSpecifiedParticipant(sheet_id: str, draft_id: str, row_participants: list, status: str):
 
   participant_infos = getSpecifiedParticipantInfo(sheet_id, row_participants)
@@ -51,11 +51,11 @@ def acceptSpecifiedParticipant(sheet_id: str, draft_id: str, row_participants: l
   sendSpecifiedParticipantGmail(draft_id, participant_emails)
   updateSpecifiedParticipantStatus(sheet_id, row_participants, status)
 
-# When user accept allowlist participant (Add parameter event.slug: int)
+# When user accept allowlist participant
 def acceptAllowlistParticipant(sheet_id: str, draft_id: str, status: str):
   
   creds = returnUserCred()
-  fileId_event = returnSpecifiedFileId()
+  # fileId_event = returnSpecifiedFileId()
 
   # TODO: Retrieve the fileId from the # model instead of searching with the Google API
   fileId_allow = returnSpecifiedFileId('允許名單')
@@ -66,7 +66,7 @@ def acceptAllowlistParticipant(sheet_id: str, draft_id: str, status: str):
     event_participants = (
       service.spreadsheets()
       .values()
-      .get(spreadsheetId=f"{fileId_event}", range="C2:C")
+      .get(spreadsheetId=f"{sheet_id}", range="C2:C")
       .execute()
     ).get('values')
 
@@ -83,6 +83,8 @@ def acceptAllowlistParticipant(sheet_id: str, draft_id: str, status: str):
 
   event_participant_emails = [event_participant[0] for event_participant in event_participants]
   allow_participant_emails = [allow_participant[0] for allow_participant in allow_participants]
+
+  print(event_participant_emails)
 
   # accept_emails = set(event_participant_emails) & set(allow_participant_emails)
   accept_rows = [index+2 for index, event_participant_email in enumerate(event_participant_emails) 

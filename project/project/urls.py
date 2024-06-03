@@ -23,7 +23,7 @@ urlpatterns = [
     path('', sign_in),
     path('base/', homepage),
     path("eventPage", eventPage),
-    path("eventPage/<str:eventName>", participantPage),
+    path("eventPage/<str:eventName>", participantPage, name='participantPage'),
     path('register/', register),
     path('allowlistPage', allowlistPage),
     path('login/', sign_in),
