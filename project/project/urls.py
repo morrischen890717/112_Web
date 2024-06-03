@@ -20,7 +20,8 @@ from manage_system.views import homepage, eventPage, participantPage, sign_in, r
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('', homepage),
+    path('', sign_in),
+    path('base/', homepage),
     path("eventPage", eventPage),
     path("eventPage/<str:eventName>", participantPage),
     path('register/', register),

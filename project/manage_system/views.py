@@ -64,8 +64,7 @@ def sign_in(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    messages.add_message(request, messages.SUCCESS, "成功登入")
-                    return redirect('/')
+                    return redirect('base/')
                 else:
                     messages.add_message(request, messages.WARNING, "帳號尚未啟用")
             else:
