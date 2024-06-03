@@ -51,6 +51,10 @@ table {
     margin: 20px 0;
 }
 
+thead {
+  background-color: #1b1b1b;
+}
+
 th, td {
     padding: 10px;
     border: 1px solid #ccc;

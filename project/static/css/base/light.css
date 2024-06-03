@@ -7,17 +7,12 @@ h2 {
     padding: 10px;
 }
 a {
-    color: #cdcdcd;
+    color: #1b1b1b;
     padding: 0.25rem;
     text-decoration: none;
 }
 a:hover {
-    color: aqua;    
-}
-.main-content a {
-    color: #cdcdcd;
-    padding: 0.25rem;
-    text-decoration: underline;
+    color: CornflowerBlue;    
 }
 body {
     height: 90%;

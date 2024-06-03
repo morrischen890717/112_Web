@@ -5,19 +5,19 @@ h1 {
 
 div.main-content {
   border-radius: 5px;
-  background-color: #f2f2f2; 
+  background-color: #1b1b1b; 
   padding: 20px;
 }
 
 header, label {
-  color: black;
+  color: white;
 }
 
 input[type="text"],
 textarea {
   width: 100%;
   color: white;
-  background-color: black;
+  background-color: #1b1b1b;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -28,8 +28,9 @@ textarea {
 
 input[type="submit"] {
   width: 100%;
-  background-color: #4caf50;
-  color: white;
+  font-size: 16px;
+  background-color: DeepSkyBlue;
+  color: black;
   padding: 14px 20px;
   margin: 8px 0;
   border: none;
@@ -38,7 +39,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: #45a049;
+  background-color: LightSkyBlue;
 }
 
 input[type="text"]::placeholder, textarea::placeholder {
@@ -51,9 +52,13 @@ table {
     margin: 20px 0;
 }
 
+thead {
+  background-color: Wheat;
+}
+
 th, td {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #1b1b1b;
     text-align: center;
 }
 
@@ -67,9 +72,9 @@ td#event-name {
 */
 
 tbody tr:nth-child(odd) {
-    background-color: DimGrey;
+    background-color: Azure;
 }
 
 tbody tr:nth-child(even) {
-    background-color: DarkSlateGrey;
+    background-color: Beige;
 }

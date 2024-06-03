@@ -14,11 +14,6 @@ a {
 a:hover {
   color: aqua;    
 }
-.main-content a {
-  color: #cdcdcd;
-  padding: 0.25rem;
-  text-decoration: underline;
-}
 body {
   height: 90%;
   margin: 0;

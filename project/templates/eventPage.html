@@ -7,28 +7,6 @@
 {% block main-wrapper %}
 <div class="main-content">
   <header><h1>活動列表</h1></header>
-  <section id="events-list">
-    <table>
-      <thead>
-        <tr>
-          <th>活動名稱</th>
-          <th>活動日期</th>
-          <th>參加人數</th>
-          <th>人數上限</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for event in events %}
-        <tr>
-          <td id="event-name"><a href="/participantPage/{{event.eventName}}">{{ event.eventName }}</a></td>
-          <td>{{ event.eventDateTime }}</td>
-          <td>{{ event.joinedUsers.count }}</td>
-          <td>{{ event.max_limit }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
-  </section>
   <section id="new-event">
     <form action="/eventPage" method="get">
       <label for="event-name">活動名稱</label>
@@ -51,6 +29,28 @@
       ></textarea>
       <input type="submit" value="新增活動" />
     </form>
+  </section>
+  <section id="events-list">
+    <table>
+      <thead>
+        <tr>
+          <th>活動名稱</th>
+          <th>活動日期</th>
+          <th>參加人數</th>
+          <th>人數上限</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for event in events %}
+        <tr>
+          <td id="event-name"><a href="/participantPage/{{event.eventName}}">{{ event.eventName }}</a></td>
+          <td>{{ event.eventDateTime }}</td>
+          <td>{{ event.joinedUsers.count }}</td>
+          <td>{{ event.max_limit }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </section>
 </div>
 {% endblock %}
