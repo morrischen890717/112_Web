@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Event, User
+from .forms import LoginForm
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from .api.backend import initializeEventSetting, getAllParticipant, acceptSpecifiedParticipant
 
 # Create your views here.
@@ -37,8 +40,6 @@ def participantPage(request, eventName):
 
     return render(request, 'participantPage.html', locals())
 
-def login(request):
-    return render(request, 'login.html')
 #註冊
 def register(request):
     form = UserCreationForm()
@@ -51,3 +52,31 @@ def register(request):
         'form': form
     }
     return render(request, 'register.html', context)
+
+#登入
+def sign_in(request):
+    if request.method == 'POST':
+        Login_form = LoginForm(request.POST)
+        if Login_form.is_valid():
+            login_username = request.POST.get("username")
+            login_password = request.POST.get("password")
+            user = authenticate(request, username=login_username, password=login_password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    messages.add_message(request, messages.SUCCESS, "成功登入")
+                    return redirect('/')
+                else:
+                    messages.add_message(request, messages.WARNING, "帳號尚未啟用")
+            else:
+                messages.add_message(request, messages.WARNING, "登入失敗")
+        else:
+            messages.add_message(request, messages.INFO, "檢查輸入內容")
+    else:
+        Login_form = LoginForm()
+    return render(request, 'login.html', locals())
+
+def log_out(request):
+    logout(request)
+    messages.add_message(request, messages.INFO, "成功登出")
+    return redirect('/') 
