@@ -77,7 +77,7 @@ def sign_in(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect('/base')
+                    return redirect('/eventPage')
                 else:
                     messages.add_message(request, messages.WARNING, "帳號尚未啟用")
             else:
