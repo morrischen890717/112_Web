@@ -1,9 +1,13 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.auth.models import Group
 from .models import User, Event
 # Register your models here.
 
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('username', 'email', 'createDate')
+class UserAdmin(BaseUserAdmin):
+    list_display = ('username', 'email', 'is_staff', 'createDate')
+    search_fields = ('username', 'email')
+    ordering = ('-createDate',)
 
 class EventAdmin(admin.ModelAdmin):
     # list_display = ('eventName', 'eventDateTime', 'createUserId', 'createUsername', 'numberOfJoinedUsers')
@@ -22,4 +26,5 @@ class EventAdmin(admin.ModelAdmin):
     numberOfJoinedUsers.short_description = '# of Participants' # setting title
 
 admin.site.register(User, UserAdmin)
+admin.site.unregister(Group)
 admin.site.register(Event, EventAdmin)
