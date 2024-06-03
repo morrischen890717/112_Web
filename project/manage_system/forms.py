@@ -31,6 +31,6 @@ class EventForm(forms.ModelForm):
         }
         widgets = {
             'eventName': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '請輸入活動名稱'}),
-            'eventDateTime': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'eventDateTime': forms.DateInput(attrs={'type': 'datetime-local', 'class': 'form-control'}),
             'max_limit': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': '請輸入活動人數上限'}),
         }

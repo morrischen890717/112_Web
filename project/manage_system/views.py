@@ -88,4 +88,4 @@ def saveNewEvent(request):
     form = EventForm(request.POST)
     if form.is_valid():
         form.save()
-    return redirect('eventPage/')
+    return redirect('/eventPage')
