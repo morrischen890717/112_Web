@@ -1,0 +1,41 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block extra-css %} 
+  <link rel="stylesheet" href="{% static "css/createEvent/light.css" %}"/> 
+  <link rel="stylesheet" href="{% static "css/createEvent/dark.css" %}" id="darkTheme" disabled/> 
+{% endblock %} 
+{% block main-wrapper %}
+<div class="main-content">
+  <header><h1>新增活動</h1></header>
+  <section id="new-event">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">新增活動</button>
+    </form>
+  </section>
+  <section id="new-event">
+    <form action="/eventPage" method="get">
+      <label for="event-name">活動名稱</label>
+      <br />
+      <input
+        type="text"
+        id="event-name"
+        name="event-name"
+        placeholder="請輸入活動名稱"
+        value=""
+      />
+      <br />
+      <label for="email-text">Email 內容</label>
+      <br />
+      <textarea
+        id="email-text"
+        rows="4"
+        cols="50"
+        placeholder="請輸入 Email 的發送內容"
+      ></textarea>
+      <input type="submit" value="新增活動" />
+    </form>
+  </section>
+</div>
+{% endblock %}

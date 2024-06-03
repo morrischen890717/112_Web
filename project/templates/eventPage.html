@@ -8,34 +8,16 @@
 <div class="main-content">
   <header><h1>活動列表</h1></header>
   <section id="new-event">
-    <form action="/eventPage" method="get">
-      <label for="event-name">活動名稱</label>
-      <br />
-      <input
-        type="text"
-        id="event-name"
-        name="event-name"
-        placeholder="請輸入活動名稱"
-        value=""
-      />
-      <br />
-      <label for="email-text">Email 內容</label>
-      <br />
-      <textarea
-        id="email-text"
-        rows="4"
-        cols="50"
-        placeholder="請輸入 Email 的發送內容"
-      ></textarea>
-      <input type="submit" value="新增活動" />
-    </form>
+      <form action="/createEvent">
+        <input type="submit" value="新增活動" />
+      </form>
   </section>
   <section id="events-list">
     <table>
       <thead>
         <tr>
           <th>活動名稱</th>
-          <th>活動日期</th>
+          <th>活動時間</th>
           <th>參加人數</th>
           <th>人數上限</th>
         </tr>

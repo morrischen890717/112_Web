@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Event, User
-from .forms import LoginForm
+from .forms import LoginForm, EventForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -80,3 +80,13 @@ def log_out(request):
     logout(request)
     messages.add_message(request, messages.INFO, "成功登出")
     return redirect('/') 
+
+def createEvent(request):
+    form = EventForm()
+    return render(request, 'createEvent.html', locals())
+
+def saveNewEvent(request):
+    form = EventForm(request.POST)
+    if form.is_valid():
+        form.save()
+    return redirect('eventPage/')
