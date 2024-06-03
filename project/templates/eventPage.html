@@ -25,7 +25,7 @@
       <tbody>
         {% for event in events %}
         <tr>
-          <td id="event-name"><a href="/participantPage/{{event.eventName}}">{{ event.eventName }}</a></td>
+          <td id="event-name"><a href="/eventPage/{{event.eventName}}">{{ event.eventName }}</a></td>
           <td>{{ event.eventDateTime }}</td>
           <td>{{ event.joinedUsers.count }}</td>
           <td>{{ event.max_limit }}</td>

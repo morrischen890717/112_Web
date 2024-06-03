@@ -22,7 +22,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('', homepage),
     path("eventPage", eventPage),
-    path("participantPage/<str:eventName>", participantPage),
+    path("eventPage/<str:eventName>", participantPage),
     path('register/', register),
     path('login/', sign_in),
     path('logout', log_out, name='Logout'),
