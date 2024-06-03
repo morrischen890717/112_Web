@@ -13,19 +13,6 @@ header, label {
   color: white;
 }
 
-input[type="text"],
-textarea {
-  width: 100%;
-  color: white;
-  background-color: #1b1b1b;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
 input[type="submit"] {
   width: 100%;
   font-size: 16px;
@@ -40,10 +27,6 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
   background-color: LightSkyBlue;
-}
-
-input[type="text"]::placeholder, textarea::placeholder {
-  color: #f2f2f2;
 }
 
 table {

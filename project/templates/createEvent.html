@@ -1,0 +1,18 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block extra-css %} 
+  <link rel="stylesheet" href="{% static "css/createEvent/light.css" %}"/> 
+  <link rel="stylesheet" href="{% static "css/createEvent/dark.css" %}" id="darkTheme" disabled/> 
+{% endblock %} 
+{% block main-wrapper %}
+<div class="main-content">
+  <header><h1>新增活動</h1></header>
+  <section id="new-event">
+    <form method="post" action="/createEvent/saveNewEvent">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">新增活動</button>
+    </form>
+  </section>
+</div>
+{% endblock %}

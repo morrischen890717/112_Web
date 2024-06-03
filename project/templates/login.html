@@ -1,16 +1,25 @@
-{% extends "base.html" %} 
-{% load static %} 
-{% block main-wrapper %}
-<div class="main-content">
-    <header><h3>登入頁面</h3></header>
-    <form action="." method="POST">
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="labLabel">Login</div>
+      {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+      <form action="." method="POST">
         {% csrf_token %}
         <table>
-            {{Login_form.as_table}}
+          {{ Login_form.as_table }}
         </table>
         <br>
         <input class="btn btn-primary" type="submit" value="登入" />
         <p>還沒有帳號嗎? <a href="/register">註冊</a></p>
-    </form>
-</div>
-{% endblock %}
+      </form>
+    </div>
+  </body>
+</html>

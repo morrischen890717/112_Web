@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Event, User
-from .forms import LoginForm
+from .forms import LoginForm, EventForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -11,6 +11,7 @@ from .api.backend import initializeEventSetting, getAllParticipant, acceptSpecif
 def homepage(request):
     return render(request, 'base.html')
 
+@login_required(login_url='login/')
 def eventPage(request):
     try:
         event_name = request.GET['event-name']
@@ -25,6 +26,7 @@ def eventPage(request):
     events = Event.objects.all()
     return render(request, 'eventPage.html', locals())
 
+@login_required(login_url='login/')
 def participantPage(request, eventName):
     
     event = Event.objects.get(eventName=eventName)
@@ -72,8 +74,7 @@ def sign_in(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    messages.add_message(request, messages.SUCCESS, "成功登入")
-                    return redirect('/')
+                    return redirect('base/')
                 else:
                     messages.add_message(request, messages.WARNING, "帳號尚未啟用")
             else:
@@ -88,3 +89,15 @@ def log_out(request):
     logout(request)
     messages.add_message(request, messages.INFO, "成功登出")
     return redirect('/') 
+
+@login_required(login_url='login/')
+def createEvent(request):
+    form = EventForm()
+    return render(request, 'createEvent.html', locals())
+
+@login_required(login_url='login/')
+def saveNewEvent(request):
+    form = EventForm(request.POST)
+    if form.is_valid():
+        form.save()
+    return redirect('/eventPage')
