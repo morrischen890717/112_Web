@@ -11,6 +11,7 @@ from .api.backend import initializeEventSetting, getAllParticipant, acceptSpecif
 def homepage(request):
     return render(request, 'base.html')
 
+@login_required(login_url='login/')
 def eventPage(request):
     try:
         event_name = request.GET['event-name']
@@ -25,6 +26,7 @@ def eventPage(request):
     events = Event.objects.all()
     return render(request, 'eventPage.html', locals())
 
+@login_required(login_url='login/')
 def participantPage(request, eventName):
     
     participants_status = request.GET.getlist('participants_status')
@@ -80,10 +82,12 @@ def log_out(request):
     messages.add_message(request, messages.INFO, "成功登出")
     return redirect('/') 
 
+@login_required(login_url='login/')
 def createEvent(request):
     form = EventForm()
     return render(request, 'createEvent.html', locals())
 
+@login_required(login_url='login/')
 def saveNewEvent(request):
     form = EventForm(request.POST)
     if form.is_valid():
