@@ -52,7 +52,7 @@ def acceptSpecifiedParticipant(sheet_id: str, draft_id: str, row_participants: l
   updateSpecifiedParticipantStatus(sheet_id, row_participants, status)
 
 # When user accept allowlist participant (Add parameter event.slug: int)
-def acceptAllowlistParticipant():
+def acceptAllowlistParticipant(sheet_id: str, draft_id: str, status: str):
   
   creds = returnUserCred()
   fileId_event = returnSpecifiedFileId()
@@ -88,7 +88,7 @@ def acceptAllowlistParticipant():
   accept_rows = [index+2 for index, event_participant_email in enumerate(event_participant_emails) 
                   if event_participant_email in allow_participant_emails]
   
-  acceptSpecifiedParticipant(accept_rows, '饗食天堂！')
+  acceptSpecifiedParticipant(sheet_id, draft_id, accept_rows, '饗食天堂！')
 
 ########## Allow List Page ##########
 

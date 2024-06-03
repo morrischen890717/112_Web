@@ -1,0 +1,28 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block extra-css %} 
+  <link rel="stylesheet" href="{% static "css/eventPage/dark.css" %}" /> 
+{% endblock %} 
+{% block main-wrapper %}
+<div class="main-content">
+  <header><h1>允許名單</h1></header>
+  <section id="events-list">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+        <tbody>
+          {% for allow_participant in allow_participants %}
+          <tr>
+            <td>{{ allow_participant.0 }}</td>
+            <td>{{ allow_participant.1 }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+    </table>
+  </section>
+</div>
+{% endblock %}

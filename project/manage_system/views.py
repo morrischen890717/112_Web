@@ -5,7 +5,7 @@ from .forms import LoginForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .api.backend import initializeEventSetting, getAllParticipant, acceptSpecifiedParticipant
+from .api.backend import initializeEventSetting, getAllParticipant, acceptSpecifiedParticipant, getAllAllowlist, acceptAllowlistParticipant
 
 # Create your views here.
 def homepage(request):
@@ -27,11 +27,14 @@ def eventPage(request):
 
 def participantPage(request, eventName):
     
+    event = Event.objects.get(eventName=eventName)
+
+    send_allowlist = request.GET.get('send_allowlist')
+    if send_allowlist: acceptAllowlistParticipant(event.sheetId, event.draftId, 'Send!')
+
     participants_status = request.GET.getlist('participants_status')
     row_participants_accept  = [ index+2 for index, participant_status in enumerate(participants_status) 
                                 if participant_status == 'accept']
-
-    event = Event.objects.get(eventName=eventName)
 
     if row_participants_accept: 
         acceptSpecifiedParticipant(event.sheetId, event.draftId, row_participants_accept, 'Send!')
@@ -39,6 +42,11 @@ def participantPage(request, eventName):
     participants = getAllParticipant(event.sheetId)
 
     return render(request, 'participantPage.html', locals())
+
+def allowlistPage(request):
+
+    allow_participants = getAllAllowlist()
+    return render(request, 'allowlistPage.html', locals())
 
 #註冊
 def register(request):

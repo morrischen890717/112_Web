@@ -7,6 +7,10 @@
 <div class="main-content">
   <header><h1>參與列表</h1></header>
   <section id="events-list">
+    <form action="{% url 'participantPage' eventName %}" method="get">
+      <input type="hidden" name="send_allowlist" value=True>
+      <button type="submit">Send to participants in the allowlist!</button>
+    </form>
     <table>
       <thead>
         <tr>
