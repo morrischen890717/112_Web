@@ -7,17 +7,22 @@
   </head>
   <body>
     <div class="container">
-      <div id="labLabel">Login</div>
+      <h2>Login</h2>
       {% for message in messages %}
-        <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        <div class="alert alert-danger {{ message.tags }}">{{ message }}</div>
       {% endfor %}
       <form action="." method="POST">
         {% csrf_token %}
-        <table>
-          {{ Login_form.as_table }}
-        </table>
+        <div class="form-group">
+          <label for="username">Username</label>
+          {{ Login_form.username }}
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          {{ Login_form.password }}
+        </div>
         <br>
-        <input class="btn btn-primary" type="submit" value="登入" />
+        <button type="submit">登入</button>
         <p>還沒有帳號嗎? <a href="/register">註冊</a></p>
       </form>
     </div>
