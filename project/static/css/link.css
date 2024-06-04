@@ -1,0 +1,44 @@
+html {
+    background-color: #f4f4f4;
+    color: #1b1b1b;
+    line-height: 1.75;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background-color: #FFFAF0;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+#labLabel {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.alert {
+    margin-bottom: 20px;
+}
+
+.btn {
+    margin-top: 10px;
+    padding: 0.5rem 1rem;
+    background-color: #1b1b1b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: CornflowerBlue;
+}

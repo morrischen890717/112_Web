@@ -3,23 +3,25 @@
 {% block extra-css %} 
   <link rel="stylesheet" href="{% static "css/eventPage/light.css" %}"/> 
   <link rel="stylesheet" href="{% static "css/eventPage/dark.css" %}" id="darkTheme" disabled/> 
+  <link rel="stylesheet" href="{% static "css/participantPage.css" %}" id="darkTheme" disabled/> 
 {% endblock %} 
 {% block main-wrapper %}
 <div class="main-content">
-  <header><h1>{{eventName}} - 邀請名單</h1></header>
+  <header><h1>{{eventName}} - 邀請頁面</h1></header>
+  <a class="invite-link" href="{% url 'participantPage' eventName %}">回報名列表</a>
   <section id="events-list">
     <!-- <form action="{% url 'eventInvitePage' eventName %}">
       <button type="submit" name="send_allowlist" value=True>Send to participants in the allowlist!</button>
     </form> -->
-    <table>
-      <thead>
-        <tr>
-          <th>姓名</th>
-          <th>電子郵件</th>
-          <th>動作</th>
-        </tr>
-      </thead>
-      <form>
+    <form>
+      <table>
+        <thead>
+          <tr>
+            <th>姓名</th>
+            <th>電子郵件</th>
+            <th>動作</th>
+          </tr>
+        </thead>
         <tbody>
           {% for participant in participants %}
           <tr>
@@ -28,15 +30,17 @@
             <td>
               <select name="invite_status">
                 <option value = 'none'>-</option>
-                <option value = 'invite'>發送邀請</option>
+                <option value = 'invite'>邀請</option>
               </select>
             </td>
           </tr>
           {% endfor %}
         </tbody>
-        <button type="submit">Send!</button>
-      </form>
-    </table>
+      </table>
+      <div class="button-wrapper">
+        <button type="submit">發送邀請</button>
+      </div>
+    </form>
   </section>
 </div>
 {% endblock %}

@@ -46,7 +46,7 @@ def returnUserCred():
 
 #Google Drive
 # TODO: Retrieve the fileId from the Event model instead of searching with the Google API (Add parameter event.slug: int)
-def returnSpecifiedFileId(event_name: str = '0615'):
+def returnSpecifiedFileId(event_name: str = '允許名單'):
   
   creds = returnUserCred()
   try:
@@ -312,16 +312,16 @@ def sendUniqueInviteLinks(event_name:str, row_participants: list, unique_invite_
 
   try:
     service = build("gmail", "v1", credentials=creds)
-    message = EmailMessage()
     participant_infos = getSpecifiedParticipantInfo(fileId, row_participants)
 
     for participant_info, unique_invite_link in zip(participant_infos, unique_invite_links):
 
+      message = EmailMessage()
       message.set_content(f"Hi, {participant_info['Name']}: {unique_invite_link}")
 
       message["To"] = f"{participant_info['Email']}"
       # message["From"] = "gduser2@workspacesamples.dev"
-      message["Subject"] = f"邀請您參加{event_name}"
+      message["Subject"] = f"邀請您參加 {event_name}"
 
       # encoded message
       encoded_message = base64.urlsafe_b64encode(message.as_bytes()).decode()

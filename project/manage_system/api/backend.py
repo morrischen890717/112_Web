@@ -9,6 +9,31 @@ import base64
 
 ########## Event Overview Page ##########
 
+def getAllEventInfos(sheet_ids: list):
+
+  creds = returnUserCred()
+  service = build("sheets", "v4", credentials=creds)
+
+  counts = [None] * len(sheet_ids)
+  for i, sheet_id in enumerate(sheet_ids):
+    try:
+      # Get Sheet Content in First File
+      result = (
+        service.spreadsheets()
+        .values()
+        .get(spreadsheetId=f"{sheet_id}", range="A2:A")
+        .execute()
+      ).get('values')
+      
+      if result: counts[i] = len([row for row in result if row])
+      else: counts[i] = 0
+
+    except HttpError as error:
+      # TODO(developer) - Handle errors from drive API.
+      print(f"An error occurred: {error}")
+
+  return counts
+
 # When user create new event
 def initializeEventSetting(event_name: str):
 
@@ -100,6 +125,13 @@ def sendSpecifiedParticipantInvite(event_name:str, row_participants: list):
 
   unique_links = generateUniqueLinks(event_name, row_participants)
   sendUniqueInviteLinks (event_name, row_participants, unique_links)
+
+def insertMultiSpecifiedParticipantData(sheet_id: str, row_participants: list):
+
+  participant_infos = getSpecifiedParticipantInfo(sheet_id, row_participants)
+  
+  for participant_info in participant_infos:
+    insertSpecifiedParticipantData(returnSpecifiedFileId(), [0, participant_info['Name'], participant_info['Email']], '-')
 
 ########## Allow List Page ##########
 

@@ -7,14 +7,14 @@
 {% endblock %} 
 {% block main-wrapper %}
 <div class="main-content">
-  <header><h1>{{eventName}} - 報名名單</h1></header>
+  <header><h1>{{eventName}} - 報名列表</h1></header>
   <section id="events-list">
     <div class="button-wrapper">
     </div>
     <form action="{% url 'participantPage' eventName %}">
       <div class="button-wrapper">
-        <a class="invite-link" href="{% url 'eventInvitePage' eventName %}">邀請名單</a>
-        <button type="submit" name="send_allowlist" value=True>錄取白名單</button>
+        <button type="submit" name="send_allowlist" value=True>自動錄取白名單</button>
+        <a class="invite-link" href="{% url 'eventInvitePage' eventName %}">進入邀請頁面</a>
       </div>
     </form>
     <form>
@@ -35,9 +35,9 @@
             <td>{{ participant.2 }}</td>
             <td>
               <select name="participants_status">
-                <option value = 'none'>待定</option>
+                <option value = 'none'>-</option>
                 <option value = 'accept'>錄取</option>
-                <option value = 'reject'>拒絕</option>
+                <option value = 'allowlist'>新增至白名單</option>
               </select>
             </td>
           </tr>
@@ -45,7 +45,7 @@
         </tbody> 
       </table>
       <div class="button-wrapper">
-        <button type="submit">錄取選取的報名者</button>
+        <button type="submit">確認</button>
       </div>
     </form>
   </section>

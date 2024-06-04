@@ -6,7 +6,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .api.backend import initializeEventSetting, getAllParticipant, acceptSpecifiedParticipant, getAllAllowlist, \
-acceptAllowlistParticipant, decodeUniqueId, insertSpecifiedParticipantData, sendSpecifiedParticipantInvite
+acceptAllowlistParticipant, decodeUniqueId, insertSpecifiedParticipantData, sendSpecifiedParticipantInvite, \
+getAllEventInfos, insertMultiSpecifiedParticipantData
+
 
 # Create your views here.
 
@@ -15,16 +17,13 @@ def homepage(request):
 
 @login_required(login_url='login/')
 def eventPage(request):
-    # try:
-    #     event_name = request.GET['event-name']
-    #     sheet_id, draft_id = initializeEventSetting(event_name)
-    # except:
-    #     event_name, sheetId, draftId = None, None, None
-    #     print("The event is not created because the corresponding sheet and draft cannot be found.")
 
-    # if event_name != None:            
-    #     Event.objects.create(eventName=event_name, sheetId=sheet_id, draftId=draft_id)
     events = Event.objects.all()
+    sheet_ids = [ event.sheetId for event in events ]
+    counts = getAllEventInfos(sheet_ids)
+    
+    events_and_counts = zip(events, counts)
+
     return render(request, 'eventPage.html', locals())
 
 @login_required(login_url='login/')
@@ -33,14 +32,20 @@ def participantPage(request, eventName):
     event = Event.objects.get(eventName=eventName)
 
     send_allowlist = request.GET.get('send_allowlist')
-    if send_allowlist: acceptAllowlistParticipant(event.sheetId, event.draftId, '已錄取（白名單）')
+    if send_allowlist: acceptAllowlistParticipant(event.sheetId, event.draftId, '錄取-白名單')
 
     participants_status = request.GET.getlist('participants_status')
     row_participants_accept  = [ index+2 for index, participant_status in enumerate(participants_status) 
                                 if participant_status == 'accept']
 
     if row_participants_accept: 
-        acceptSpecifiedParticipant(event.sheetId, event.draftId, row_participants_accept, '已錄取')
+        acceptSpecifiedParticipant(event.sheetId, event.draftId, row_participants_accept, '錄取')
+
+    row_participants_accept  = [ index+2 for index, participant_status in enumerate(participants_status) 
+                                if participant_status == 'allowlist']
+    
+    if row_participants_accept:
+        insertMultiSpecifiedParticipantData(event.sheetId, row_participants_accept)
 
     participants = getAllParticipant(event.sheetId)
 
@@ -77,7 +82,7 @@ def welcomePage(request, uniqueId):
     if participate:
         event = Event.objects.get(eventName=participant_info[0])
         sheet_id = event.sheetId
-        insertSpecifiedParticipantData(sheet_id, participant_info, '已錄取（邀請）')
+        insertSpecifiedParticipantData(sheet_id, participant_info, '錄取-邀請')
 
     return render(request, 'linkWelcomePage.html', locals())
 

@@ -26,18 +26,18 @@
           <th>活動名稱</th>
           <th>活動時間</th>
           <th>主辦者</th>
-          <th>參加人數</th>
+          <th>錄取人數</th>
           <th>人數上限</th>
           <th>刪除活動</th>
         </tr>
       </thead>
       <tbody>
-        {% for event in events %}
+        {% for event, count in events_and_counts %}
         <tr>
           <td id="event-name"><a href="/eventPage/{{event.eventName}}">{{ event.eventName }}</a></td>
           <td>{{ event.eventDateTime }}</td>
           <td>{{ event.createUser.username }}</td>
-          <td>{{ event.joinedUsers.count }}</td>
+          <td>{{ count }}</td>
           <td>{{ event.max_limit }}</td>
           <td>
             {% if user == event.createUser %}
