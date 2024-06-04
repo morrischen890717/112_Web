@@ -25,6 +25,9 @@ class RegisterForm(UserCreationForm): # UserCreationForm 會自帶 password
     class Meta:
         model = User
         fields = ('username', 'email')
+        labels = {
+            'username': '使用者名稱'
+        }
         widgets = {
             'username': forms.TextInput(attrs={'class':'form-control', 'placeholder':'請輸入使用者名稱'}), 
             'email': forms.EmailInput(attrs={'class':'form-control', 'placeholder':'請輸入電子信箱'}),
