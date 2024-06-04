@@ -292,7 +292,7 @@ def generateUniqueLinks(event_name: str, row_participants: list):
   unique_invite_links = [None] * len(participant_infos)
   
   for i, participant_info in enumerate(participant_infos):
-    participant_info = f'{event_name}|{participant_info['Name']}|{participant_info['Email']}'
+    participant_info = f"{event_name}|{participant_info['Name']}|{participant_info['Email']}"
     participant_info = base64.urlsafe_b64encode(participant_info.encode('utf-8')).decode('utf-8')
     unique_invite_links[i] = f'http://127.0.0.1:8000/invitePage/{participant_info}'
 
@@ -319,7 +319,7 @@ def sendUniqueInviteLinks(event_name:str, row_participants: list, unique_invite_
 
       message.set_content(f"Hi, {participant_info['Name']}: {unique_invite_link}")
 
-      message["To"] = f'{participant_info['Email']}'
+      message["To"] = f"{participant_info['Email']}"
       # message["From"] = "gduser2@workspacesamples.dev"
       message["Subject"] = f"邀請您參加{event_name}"
 
