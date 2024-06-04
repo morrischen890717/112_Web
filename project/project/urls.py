@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from manage_system.views import homepage, eventPage, participantPage, eventInvitePage, \
-allowlistPage, invitePage, welcomePage, sign_in, register, log_out, createEvent, saveNewEvent
+allowlistPage, invitePage, welcomePage, sign_in, register, log_out, createEvent, saveNewEvent, deleteEvent
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -34,4 +34,5 @@ urlpatterns = [
     path('logout', log_out, name='Logout'),
     path('createEvent', createEvent),
     path('createEvent/saveNewEvent', saveNewEvent),
+    path('deleteEvent/<str:id>', deleteEvent),
 ]

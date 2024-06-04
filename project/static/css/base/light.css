@@ -140,3 +140,7 @@ flip card ref: https://3dtransforms.desandro.com/card-flip
     box-shadow: none;
 }
 
+.name {
+    padding: 0.5rem;
+    font-size: 20px;
+}

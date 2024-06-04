@@ -145,3 +145,15 @@ def saveNewEvent(request):
         event.save()
 
     return redirect('/eventPage')
+
+@login_required(login_url='login/')
+def deleteEvent(request, id):
+    try:
+        event = Event.objects.get(id=id)
+    except:
+        event = None
+    if event:
+        event.delete()
+    return redirect('/eventPage')
+
+

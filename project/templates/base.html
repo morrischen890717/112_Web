@@ -14,8 +14,9 @@
   <body>
 
     <div class="top-navigation">
-      <div class="logo">Project</div>
+      <div class="logo">Manage</div>
       {% if user.is_authenticated %}
+        <div class="name">{{ user.username }}</div>
         <a class="btn btn-lg btn-primary" href="{% url 'Logout' %}" role="button">登出 &#187;</a>
       {% else %}
         <a href="/login"><h4>Login</h4></a>
@@ -24,9 +25,11 @@
     </div>
     <div class="main-wrapper">
       <div class="sidebar-container">
-        <h2><a href="/eventPage">活動列表</a></h2>
-        <h2><a href="/createEvent">新增活動</a></h2>
-        <h2><a href="/allowlistPage">白名單</a></h2>
+        <ol>
+          <li><a href="/eventPage">活動列表</a></li>
+          <li><a href="/createEvent">新增活動</a></li>
+          <li><a href="/allowlistPage">白名單</a></li>
+        </ol>
       </div>
       {% block main-wrapper %}{% endblock %}
     </div>
