@@ -5,6 +5,13 @@
   <link rel="stylesheet" href="{% static "css/eventPage/dark.css" %}" id="darkTheme" disabled/> 
 {% endblock %} 
 {% block main-wrapper %}
+{% if messages %}
+  {% for message in messages %}
+    {% if message.tags %}
+      <script>alert("{{ message }}")</script>
+    {% endif %}
+  {% endfor %}
+{% endif %}
 <div class="main-content">
   <header><h1>活動列表</h1></header>
   <section id="new-event">

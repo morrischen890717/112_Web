@@ -154,6 +154,7 @@ def deleteEvent(request, id):
         event = None
     if event:
         event.delete()
+        messages.add_message(request, messages.INFO, "成功刪除活動。")
     return redirect('/eventPage')
 
 
