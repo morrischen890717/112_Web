@@ -60,3 +60,7 @@ tbody tr:nth-child(odd) {
 tbody tr:nth-child(even) {
     background-color: DarkSlateGrey;
 }
+
+a.delete-btn:hover {
+    color: red;  
+}

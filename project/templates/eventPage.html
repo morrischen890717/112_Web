@@ -41,7 +41,7 @@
           <td>{{ event.max_limit }}</td>
           <td>
             {% if user == event.createUser %}
-              <a href="/deleteEvent/{{ event.id }}">取消</a>
+              <a class="delete-btn" href="/deleteEvent/{{ event.id }}">取消</a>
             {% endif %}
           </td>
         </tr>
