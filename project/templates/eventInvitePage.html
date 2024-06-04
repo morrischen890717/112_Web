@@ -6,16 +6,14 @@
 {% endblock %} 
 {% block main-wrapper %}
 <div class="main-content">
-  <header><h1>{{eventName}} - 報名名單</h1></header>
-  <a href="{% url 'eventInvitePage' eventName %}">邀請名單</a>
+  <header><h1>{{eventName}} - 邀請名單</h1></header>
   <section id="events-list">
-    <form action="{% url 'participantPage' eventName %}">
+    <!-- <form action="{% url 'eventInvitePage' eventName %}">
       <button type="submit" name="send_allowlist" value=True>Send to participants in the allowlist!</button>
-    </form>
+    </form> -->
     <table>
       <thead>
         <tr>
-          <th>目前狀態</th>
           <th>姓名</th>
           <th>電子郵件</th>
           <th>動作</th>
@@ -27,12 +25,10 @@
           <tr>
             <td>{{ participant.0 }}</td>
             <td>{{ participant.1 }}</td>
-            <td>{{ participant.2 }}</td>
             <td>
-              <select name="participants_status">
-                <option value = 'none'>待定</option>
-                <option value = 'accept'>錄取</option>
-                <option value = 'reject'>拒絕</option>
+              <select name="invite_status">
+                <option value = 'none'>-</option>
+                <option value = 'invite'>發送邀請</option>
               </select>
             </td>
           </tr>

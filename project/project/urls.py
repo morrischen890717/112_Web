@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from manage_system.views import homepage, eventPage, participantPage, allowlistPage, sign_in, register, log_out, createEvent, saveNewEvent
+from manage_system.views import homepage, eventPage, participantPage, eventInvitePage, \
+allowlistPage, invitePage, welcomePage, sign_in, register, log_out, createEvent, saveNewEvent
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -24,8 +25,11 @@ urlpatterns = [
     path('base/', homepage),
     path("eventPage", eventPage),
     path("eventPage/<str:eventName>", participantPage, name='participantPage'),
+    path("eventInvitePage/<str:eventName>", eventInvitePage, name='eventInvitePage'),
     path('register/', register),
     path('allowlistPage', allowlistPage),
+    path('invitePage/<str:uniqueId>', invitePage),
+    path('welcomePage/<str:uniqueId>', welcomePage, name='welcomePage'),
     path('login/', sign_in),
     path('logout', log_out, name='Logout'),
     path('createEvent', createEvent),

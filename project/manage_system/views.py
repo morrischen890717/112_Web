@@ -5,7 +5,8 @@ from .forms import LoginForm, EventForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .api.backend import initializeEventSetting, getAllParticipant, acceptSpecifiedParticipant, getAllAllowlist, acceptAllowlistParticipant
+from .api.backend import initializeEventSetting, getAllParticipant, acceptSpecifiedParticipant, getAllAllowlist, \
+acceptAllowlistParticipant, decodeUniqueId, insertSpecifiedParticipantData, sendSpecifiedParticipantInvite
 
 # Create your views here.
 def homepage(request):
@@ -31,24 +32,53 @@ def participantPage(request, eventName):
     event = Event.objects.get(eventName=eventName)
 
     send_allowlist = request.GET.get('send_allowlist')
-    if send_allowlist: acceptAllowlistParticipant(event.sheetId, event.draftId, 'Send!')
+    if send_allowlist: acceptAllowlistParticipant(event.sheetId, event.draftId, '已錄取（白名單）')
 
     participants_status = request.GET.getlist('participants_status')
     row_participants_accept  = [ index+2 for index, participant_status in enumerate(participants_status) 
                                 if participant_status == 'accept']
 
     if row_participants_accept: 
-        acceptSpecifiedParticipant(event.sheetId, event.draftId, row_participants_accept, 'Send!')
+        acceptSpecifiedParticipant(event.sheetId, event.draftId, row_participants_accept, '已錄取')
 
     participants = getAllParticipant(event.sheetId)
 
     return render(request, 'participantPage.html', locals())
 
 @login_required(login_url='login/')
+def eventInvitePage(request, eventName):
+
+    participants_status = request.GET.getlist('invite_status')
+    row_participants_invite  = [ index+2 for index, participant_status in enumerate(participants_status) 
+                                if participant_status == 'invite']
+
+    if row_participants_invite: 
+        sendSpecifiedParticipantInvite(eventName, row_participants_invite)
+
+    participants = getAllAllowlist()
+    return render(request, 'eventInvitePage.html', locals())
+
+@login_required(login_url='login/')
 def allowlistPage(request):
 
     allow_participants = getAllAllowlist()
     return render(request, 'allowlistPage.html', locals())
+
+def invitePage(request, uniqueId):
+    participant_info = decodeUniqueId(uniqueId)
+
+    return render(request, 'linkInvitePage.html', locals())
+
+def welcomePage(request, uniqueId):
+    participate = request.GET.get('participate')
+
+    participant_info = decodeUniqueId(uniqueId)
+    if participate:
+        event = Event.objects.get(eventName=participant_info[0])
+        sheet_id = event.sheetId
+        insertSpecifiedParticipantData(sheet_id, participant_info, '已錄取（邀請）')
+
+    return render(request, 'linkWelcomePage.html', locals())
 
 #註冊
 def register(request):

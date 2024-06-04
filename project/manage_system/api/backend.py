@@ -1,7 +1,11 @@
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-from .google_cloud import returnUserCred, querySheetIdandDraftId, returnSpecifiedFileId, insertFirstColumninSheet, getSpecifiedParticipantInfo, sendSpecifiedParticipantGmail, updateSpecifiedParticipantStatus
+from .google_cloud import returnUserCred, querySheetIdandDraftId, returnSpecifiedFileId, \
+insertFirstColumninSheet, getSpecifiedParticipantInfo, \
+sendSpecifiedParticipantGmail, updateSpecifiedParticipantStatus, insertFirstRowinSheet, updateSpecifiedParticipantData, \
+generateUniqueLinks, sendUniqueInviteLinks
+import base64
 
 ########## Event Overview Page ##########
 
@@ -73,7 +77,7 @@ def acceptAllowlistParticipant(sheet_id: str, draft_id: str, status: str):
     allow_participants = (
       service.spreadsheets()
       .values()
-      .get(spreadsheetId=f"{fileId_allow}", range="B2:B")
+      .get(spreadsheetId=f"{fileId_allow}", range="C2:C")
       .execute()
     ).get('values')
 
@@ -90,7 +94,12 @@ def acceptAllowlistParticipant(sheet_id: str, draft_id: str, status: str):
   accept_rows = [index+2 for index, event_participant_email in enumerate(event_participant_emails) 
                   if event_participant_email in allow_participant_emails]
   
-  acceptSpecifiedParticipant(sheet_id, draft_id, accept_rows, '饗食天堂！')
+  acceptSpecifiedParticipant(sheet_id, draft_id, accept_rows, status)
+
+def sendSpecifiedParticipantInvite(event_name:str, row_participants: list):
+
+  unique_links = generateUniqueLinks(event_name, row_participants)
+  sendUniqueInviteLinks (event_name, row_participants, unique_links)
 
 ########## Allow List Page ##########
 
@@ -106,7 +115,7 @@ def getAllAllowlist():
     result = (
       service.spreadsheets()
       .values()
-      .get(spreadsheetId=f"{fileId}", range="A2:B")
+      .get(spreadsheetId=f"{fileId}", range="B2:C")
       .execute()
     ).get('values')
 
@@ -116,5 +125,13 @@ def getAllAllowlist():
     # TODO(developer) - Handle errors from drive API.
     print(f"An error occurred: {error}")
 
-########## Allow List Page ##########
-# def 
+def decodeUniqueId(unique_id: str):
+  participant_info = base64.urlsafe_b64decode(unique_id.encode('utf-8')).decode('utf-8')
+  participant_info = participant_info.split('|')
+
+  return participant_info
+
+########## Welcome Page ##########
+def insertSpecifiedParticipantData(sheet_id: str, participant_info: list, status: str):
+  insertFirstRowinSheet(sheet_id)
+  updateSpecifiedParticipantData(sheet_id, participant_info, status)

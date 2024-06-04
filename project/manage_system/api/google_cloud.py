@@ -10,6 +10,7 @@ from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 import base64
+from email.message import EmailMessage
 from email.mime.text import MIMEText
 from email import message_from_bytes
 
@@ -181,6 +182,57 @@ def updateSpecifiedParticipantStatus(sheet_id: str, row_participants: list, stat
     print(f"An error occurred: {error}")
     return error
 
+def insertFirstRowinSheet(sheet_id: str):
+  
+  creds = returnUserCred()
+
+  request_body = {
+    "requests":[{
+      "insertDimension": {
+        "range": {
+          "sheetId": 0,
+          "dimension": "ROWS",
+          "startIndex": 1,
+          "endIndex": 2
+        },
+      "inheritFromBefore": False
+      }
+    }]
+  }
+
+  try:
+    service = build("sheets", "v4", credentials=creds)
+    result = (
+      service.spreadsheets()
+      .batchUpdate(spreadsheetId=f"{sheet_id}", body = request_body)
+      .execute()
+    )
+  except HttpError as error:
+    print(f"An error occurred: {error}")
+    return error
+
+def updateSpecifiedParticipantData(sheet_id: str, participant_info: list, status: str):
+  creds = returnUserCred()
+  
+  values = [
+    [f'{status}', f'{participant_info[1]}', f'{participant_info[2]}'],
+  ]
+
+  data = {
+      'range': '2:2',
+      'majorDimension': 'ROWS',
+      'values': values
+  }
+
+  service = build("sheets", "v4", credentials=creds)
+
+  service.spreadsheets().values().update(
+      spreadsheetId=sheet_id,
+      range='2:2',
+      valueInputOption='RAW',
+      body=data
+  ).execute()
+
 #Gmail
 #backend_api: acceptSpecifiedParticipant
 # TODO: Retrieve the draftId from the Event model
@@ -229,6 +281,65 @@ def sendSpecifiedParticipantGmail(draft_id: str, participant_emails: list):
     print(f"An error occurred: {error}")
     send_message = None
   return creds
+
+def generateUniqueLinks(event_name: str, row_participants: list):
+
+  creds = returnUserCred()
+  fileId = returnSpecifiedFileId('允許名單')
+
+  participant_infos = getSpecifiedParticipantInfo(fileId, row_participants)
+
+  unique_invite_links = [None] * len(participant_infos)
+  
+  for i, participant_info in enumerate(participant_infos):
+    participant_info = f'{event_name}|{participant_info['Name']}|{participant_info['Email']}'
+    participant_info = base64.urlsafe_b64encode(participant_info.encode('utf-8')).decode('utf-8')
+    unique_invite_links[i] = f'http://127.0.0.1:8000/invitePage/{participant_info}'
+
+  return unique_invite_links
+
+def sendUniqueInviteLinks(event_name:str, row_participants: list, unique_invite_links: list):
+  """Create and send an email message
+  Print the returned  message id
+  Returns: Message object, including message id
+
+  Load pre-authorized user credentials from the environment.
+  TODO(developer) - See https://developers.google.com/identity
+  for guides on implementing OAuth2 for the application.
+  """
+  creds = returnUserCred()
+  fileId = returnSpecifiedFileId('允許名單')
+
+  try:
+    service = build("gmail", "v1", credentials=creds)
+    message = EmailMessage()
+    participant_infos = getSpecifiedParticipantInfo(fileId, row_participants)
+
+    for participant_info, unique_invite_link in zip(participant_infos, unique_invite_links):
+
+      message.set_content(f"Hi, {participant_info['Name']}: {unique_invite_link}")
+
+      message["To"] = f'{participant_info['Email']}'
+      # message["From"] = "gduser2@workspacesamples.dev"
+      message["Subject"] = f"邀請您參加{event_name}"
+
+      # encoded message
+      encoded_message = base64.urlsafe_b64encode(message.as_bytes()).decode()
+
+      create_message = {"raw": encoded_message}
+      # pylint: disable=E1101
+      send_message = (
+          service.users()
+          .messages()
+          .send(userId="me", body=create_message)
+          .execute()
+      )
+      print(f'Message Id: {send_message["id"]}')
+
+  except HttpError as error:
+    print(f"An error occurred: {error}")
+    send_message = None
+  return send_message
 
 if __name__ == "__main__":
   None
