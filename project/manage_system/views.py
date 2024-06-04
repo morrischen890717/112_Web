@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .models import Event, User
-from .forms import LoginForm, EventForm
+from .forms import LoginForm, RegisterForm, EventForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -9,6 +9,7 @@ from .api.backend import initializeEventSetting, getAllParticipant, acceptSpecif
 acceptAllowlistParticipant, decodeUniqueId, insertSpecifiedParticipantData, sendSpecifiedParticipantInvite
 
 # Create your views here.
+
 def homepage(request):
     return render(request, 'base.html')
 
@@ -82,12 +83,15 @@ def welcomePage(request, uniqueId):
 
 #註冊
 def register(request):
-    form = UserCreationForm()
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('/login')  #重新導向到登入畫面
+    form = RegisterForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('/login')
+    # if request.method == "POST":
+    #     form = UserCreationForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         return redirect('/login')  #重新導向到登入畫面
     context = {
         'form': form
     }
@@ -104,7 +108,7 @@ def sign_in(request):
             if user is not None:
                 if user.is_active:
                     login(request, user)
-                    return redirect('base/')
+                    return redirect('/eventPage')
                 else:
                     messages.add_message(request, messages.WARNING, "帳號尚未啟用")
             else:
@@ -136,9 +140,8 @@ def saveNewEvent(request):
             eventName, sheetId, draftId = None, None, None
             print("The event is not created because the corresponding sheet and draft cannot be found.")
     if eventName != None:            
-        form.save()
-        event = Event.objects.get(eventName=eventName)
-        event.sheetId, event.draftId= sheet_id, draft_id
+        event = form.save(commit=False)
+        event.createUser, event.sheetId, event.draftId = request.user, sheet_id, draft_id
         event.save()
 
     return redirect('/eventPage')
