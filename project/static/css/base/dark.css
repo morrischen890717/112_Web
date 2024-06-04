@@ -68,7 +68,7 @@ ul {
 .main-wrapper {
   display: grid;
   gap: 3rem;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 2.5fr) minmax(0, 15rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 5fr) minmax(0, 15rem);
 }
 
 .main-content {

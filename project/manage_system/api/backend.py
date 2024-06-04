@@ -14,25 +14,35 @@ def getAllEventInfos(sheet_ids: list):
   creds = returnUserCred()
   service = build("sheets", "v4", credentials=creds)
 
-  counts = [None] * len(sheet_ids)
+  accept_counts = [None] * len(sheet_ids)
+  total_counts = [None] * len(sheet_ids)
   for i, sheet_id in enumerate(sheet_ids):
     try:
       # Get Sheet Content in First File
-      result = (
+      status = (
         service.spreadsheets()
         .values()
-        .get(spreadsheetId=f"{sheet_id}", range="A2:A")
+        .get(spreadsheetId=f"{sheet_id}", range="A2:B")
         .execute()
       ).get('values')
       
-      if result: counts[i] = len([row for row in result if row])
-      else: counts[i] = 0
+      if status: accept_counts[i] = len([row[0] for row in status if row[0]])
+      else: accept_counts[i] = 0
+
+      # name = (
+      #   service.spreadsheets()
+      #   .values()
+      #   .get(spreadsheetId=f"{sheet_id}", range="B2:B")
+      #   .execute()
+      # ).get('values')
+
+      total_counts[i] = len(status)
 
     except HttpError as error:
       # TODO(developer) - Handle errors from drive API.
       print(f"An error occurred: {error}")
 
-  return counts
+  return accept_counts, total_counts
 
 # When user create new event
 def initializeEventSetting(event_name: str):

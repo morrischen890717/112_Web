@@ -20,9 +20,9 @@ def eventPage(request):
 
     events = Event.objects.all()
     sheet_ids = [ event.sheetId for event in events ]
-    counts = getAllEventInfos(sheet_ids)
+    accept_counts, total_counts = getAllEventInfos(sheet_ids)
     
-    events_and_counts = zip(events, counts)
+    events_and_counts = zip(events, accept_counts, total_counts)
 
     return render(request, 'eventPage.html', locals())
 

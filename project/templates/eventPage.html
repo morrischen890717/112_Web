@@ -32,12 +32,12 @@
         </tr>
       </thead>
       <tbody>
-        {% for event, count in events_and_counts %}
+        {% for event, accept_count, total_count in events_and_counts %}
         <tr>
           <td id="event-name"><a href="/eventPage/{{event.eventName}}">{{ event.eventName }}</a></td>
           <td>{{ event.eventDateTime }}</td>
           <td>{{ event.createUser.username }}</td>
-          <td>{{ count }}</td>
+          <td>{{ accept_count }} / {{ total_count }}</td>
           <td>{{ event.max_limit }}</td>
           <td>
             {% if user == event.createUser %}
