@@ -14,14 +14,14 @@
       <form action="." method="POST">
         {% csrf_token %}
         <div class="form-group">
-          <label for="username">Username</label>
+          <label for="username">使用者名稱</label>
           {{ Login_form.username }}
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
+          <label for="password">密碼</label>
           {{ Login_form.password }}
         </div>
-        <br>
+        <br />
         <button type="submit">登入</button>
         <p>還沒有帳號嗎? <a href="/register">註冊</a></p>
       </form>

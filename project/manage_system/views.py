@@ -139,11 +139,13 @@ def saveNewEvent(request):
         except:
             eventName, sheetId, draftId = None, None, None
             print("The event is not created because the corresponding sheet and draft cannot be found.")
-    if eventName != None:            
+    if eventName:            
         event = form.save(commit=False)
         event.createUser, event.sheetId, event.draftId = request.user, sheet_id, draft_id
         event.save()
-
+        messages.add_message(request, messages.INFO, "新增活動成功。")
+    else:
+        messages.add_message(request, messages.ERROR, "無法新增活動。")
     return redirect('/eventPage')
 
 @login_required(login_url='login/')
@@ -154,6 +156,9 @@ def deleteEvent(request, id):
         event = None
     if event:
         event.delete()
+        messages.add_message(request, messages.INFO, "成功刪除活動。")
+    else:
+        messages.add_message(request, messages.ERROR, "該活動不存在。")
     return redirect('/eventPage')
 
 

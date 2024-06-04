@@ -7,10 +7,10 @@ User = get_user_model()
 
 class LoginForm(forms.Form):
     username = forms.CharField(
-        label="帳號",
+        label="使用者名稱",
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': '請輸入帳號'
+            'placeholder': '請輸入使用者名稱'
         })
     )
     password = forms.CharField(
@@ -25,6 +25,15 @@ class RegisterForm(UserCreationForm): # UserCreationForm 會自帶 password
     class Meta:
         model = User
         fields = ('username', 'email')
+        widgets = {
+            'username': forms.TextInput(attrs={'class':'form-control', 'placeholder':'請輸入使用者名稱'}), 
+            'email': forms.EmailInput(attrs={'class':'form-control', 'placeholder':'請輸入電子信箱'}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(RegisterForm, self).__init__(*args, **kwargs)
+        self.fields['password1'].widget = forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '請輸入密碼'})
+        self.fields['password2'].widget = forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '請再輸入密碼一次'})
 
 # class LoginForm(forms.Form):
 #     username = forms.CharField(label='帳號', max_length=10)
