@@ -1,0 +1,27 @@
+button {
+    font-size: 15px;
+    width: 20%;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 0px;
+    margin: 8px 0px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button-wrapper {
+    display: flex;
+    justify-content:flex-end;
+}
+
+.invite-link {
+    font-size: 15px;
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 10px;
+    margin: 8px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
